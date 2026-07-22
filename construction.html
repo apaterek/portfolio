@@ -42,7 +42,7 @@
     top: 22px;
     left: 0; right: 0;
     margin: 0 auto;
-    width: min(680px, 92vw);
+    width: min(760px, 94vw);
     text-align: center;
     font-size: 13px;
     letter-spacing: 0.06em;
@@ -55,7 +55,7 @@
      Stage width == video width, so the lines' left edge (text-align:left)
      sits exactly on the video frame's left edge. */
   .stage {
-    width: min(680px, 92vw);
+    width: min(760px, 94vw);
     display: flex;
     flex-direction: column;
     container-type: inline-size;   /* lines size to this width via cqi */
@@ -81,10 +81,10 @@
     text-align: left;
     white-space: nowrap;            /* lines grow rightward from the frame edge */
     font-weight: 700;
-    /* Sized in container-query units (of the frame width) so the longest line
-       always ends before the frame's right edge. 7.6cqi keeps "KINDA SORTA
-       ALMOST IS" (the widest) within the frame with a safe margin at any size. */
-    font-size: clamp(20px, 7.6cqi, 52px);
+    /* --line-fs is measured + set by JS (fitLines) to guarantee the longest
+       line ends before the frame edge in the ACTUAL rendering font. The cqi
+       clamp is only a pre-JS fallback. */
+    font-size: var(--line-fs, clamp(18px, 6.4cqi, 44px));
     line-height: 1.05;
     letter-spacing: -0.02em;
     text-transform: uppercase;
@@ -166,6 +166,38 @@
       (tok.line === 'above' ? aboveEl : belowEl).appendChild(s);
       return s;
     });
+
+    // Scale the headline to the frame width using the REAL rendered font, so it
+    // always ends before the frame's right edge regardless of which font the
+    // browser substitutes (San Francisco via -apple-system is wider than
+    // Helvetica). Measures a full-text clone off-screen, then sets --line-fs.
+    function fitLines() {
+      var stage = document.querySelector('.stage');
+      var stageW = stage.clientWidth;
+      var ref = 100;   // reference font-size for a linear width measurement
+      function fullWidth(el) {
+        var c = el.cloneNode(true);
+        c.removeAttribute('id');
+        c.querySelectorAll('.word').forEach(function (w) { w.classList.add('show'); });
+        c.style.position = 'absolute';
+        c.style.left = '-99999px';
+        c.style.top = '0';
+        c.style.display = 'inline-block';
+        c.style.whiteSpace = 'nowrap';
+        c.style.fontSize = ref + 'px';
+        document.body.appendChild(c);
+        var w = c.getBoundingClientRect().width;
+        document.body.removeChild(c);
+        return w;
+      }
+      var widest = Math.max(fullWidth(aboveEl), fullWidth(belowEl));
+      var perPx = widest / ref;                 // rendered px width per px font
+      var target = 0.93 * stageW / perPx;       // 7% gap before the frame edge
+      target = Math.max(16, Math.min(target, 54));
+      document.documentElement.style.setProperty('--line-fs', target.toFixed(2) + 'px');
+    }
+    fitLines();
+    window.addEventListener('resize', fitLines);
 
     var N = tokens.length;   // reveal clicks before the colour phase
     var clicks = 0;
