@@ -1,0 +1,190 @@
+/* ============================================================
+   PROJECT — individual work-sample (case-study) page layout.
+   One shared stylesheet for all four work/ pages. Links after
+   tokens.css + base.css (needs the header/nav from base).
+   Contour-link component + JS are NOT needed here.
+   ============================================================ */
+
+main.project {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 200px var(--page-gutter) 160px;
+}
+
+/* ---- Eyebrow — concise credit line above the title ---------- */
+.project-eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+/* ---- Title + subtitle -------------------------------------- */
+.project-title {
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 1.0em;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.project-title .sub {
+  display: block;
+  margin-top: 12px;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.2em;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* ---- Media frame — bordered 16:9. Swap the inner placeholder
+   note for an <img> or <video> when assets are ready. --------- */
+.media-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 44px 0;
+  border: var(--stroke) solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.media-frame img,
+.media-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.media-frame .placeholder {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* ---- Subhead — gerund-led strategic statement -------------- */
+.project-subhead {
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.28em;
+  letter-spacing: -0.01em;
+  margin: 4px 0 28px;
+  max-width: 22ch;
+}
+
+/* ---- Body -------------------------------------------------- */
+.project-body p {
+  font-size: 17px;
+  line-height: 1.6em;
+  margin-bottom: 20px;
+  max-width: 62ch;
+}
+
+/* ---- Role — the credit paragraph, set apart by a rule ------ */
+.project-role {
+  font-size: 17px;
+  line-height: 1.6em;
+  max-width: 62ch;
+  margin-top: 8px;
+  padding-top: 26px;
+  border-top: var(--stroke) solid var(--ink);
+}
+
+/* ---- Scale / positioning line — italic, conditional -------- */
+.project-scale {
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.55em;
+  margin-top: 26px;
+  opacity: 0.75;
+  max-width: 62ch;
+}
+
+/* ---- CTA + back to work ------------------------------------ */
+.project-cta {
+  display: inline-block;
+  margin-top: 40px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+a.project-cta { border-bottom: var(--stroke) solid var(--ink); padding-bottom: 2px; }
+.project-back {
+  display: inline-block;
+  margin-top: 72px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  transition: opacity 0.15s ease;
+}
+.project-back:hover { opacity: 1; }
+
+/* ============================================================
+   ABOUT — reuses the content styles above (eyebrow, body, cta,
+   media frame) plus these About-specific pieces for about.html.
+   ============================================================ */
+
+/* Portrait variant of the media frame */
+.media-frame--portrait {
+  aspect-ratio: 4 / 5;
+  max-width: 340px;
+}
+
+/* Large first-person lead statement (sentence case) */
+.about-lead {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.12em;
+  letter-spacing: -0.02em;
+  margin: 4px 0 28px;
+  max-width: 20ch;
+}
+
+/* Labelled details — current focus, location */
+.about-meta {
+  margin-top: 8px;
+  padding-top: 26px;
+  border-top: var(--stroke) solid var(--ink);
+}
+.about-meta .row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 14px;
+  font-size: 16px;
+  line-height: 1.5em;
+}
+.about-meta .row:last-child { margin-bottom: 0; }
+.about-meta .label {
+  flex: 0 0 120px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding-top: 2px;
+}
+.about-meta .value { flex: 1; }
+
+/* Contact channels — links inside the meta rows (contact.html) */
+.contact-link {
+  border-bottom: var(--stroke) solid var(--ink);
+  padding-bottom: 1px;
+  transition: opacity 0.15s ease;
+}
+.contact-link:hover { opacity: 0.6; }
+
+/* ---- Responsive -------------------------------------------- */
+@media (max-width: 900px) {
+  main.project { padding-top: 180px; }
+  .project-title { font-size: 34px; }
+  .project-title .sub { font-size: 19px; }
+  .project-subhead { font-size: 21px; }
+  .about-lead { font-size: 27px; }
+}

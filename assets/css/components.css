@@ -1,0 +1,109 @@
+/* ============================================================
+   COMPONENTS — the contour link / silhouette system.
+
+   Two-layer DOM per link:
+   - .shape  an auto-cloned silhouette (opaque boxes, invisible
+             text). The #round SVG goo filter — injected once by
+             contour-links.js — rounds every corner uniformly, then
+             drop-shadows trace the ink outline around it.
+   - .lines  the crisp title text, unfiltered, sitting on top.
+             This is the layer you author.
+
+   Two hover modes share this base:
+   - default        fill / invert  (writing links)
+   - .stack--reveal blurb reveal   (work grid)
+   ============================================================ */
+
+.stack {
+  position: relative;
+  width: fit-content;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.lines { display: flex; flex-direction: column; align-items: center; }
+.lines b {
+  display: block;
+  width: fit-content;
+  padding: 2px 12px;
+  margin-top: -6px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.25em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.lines b:first-child { margin-top: 0; }
+
+/* cloned silhouette layer */
+.shape {
+  filter:
+    url(#round)
+    drop-shadow(var(--stroke) 0 0 var(--ink))
+    drop-shadow(calc(var(--stroke) * -1) 0 0 var(--ink))
+    drop-shadow(0 var(--stroke) 0 var(--ink))
+    drop-shadow(0 calc(var(--stroke) * -1) 0 var(--ink));
+}
+.shape b { background: var(--background-color); color: transparent; }
+
+/* crisp text layer floats above the shape */
+.lines:not(.shape) { position: absolute; top: 0; left: 0; right: 0; }
+/* no-JS fallback: if the shape was never cloned, keep text in flow */
+.lines:only-child { position: static; }
+
+/* ---- Hover A — fill / invert (default: writing links) --------
+   The silhouette fills with ink and the title inverts to the
+   background colour. */
+.stack:hover:not(.stack--reveal) .shape b            { background: var(--ink); }
+.stack:hover:not(.stack--reveal) .lines:not(.shape) b { color: var(--background-color); }
+
+/* ---- Hover B — blurb reveal (.stack--reveal: work grid) ------
+   Sequenced, not crossfaded: outline + title fade out together,
+   then the blurb fades in. Mouse-out plays the same order in
+   reverse (blurb first, then the icon returns) via the delays.
+   The shape keeps its box while transparent, so the card never
+   resizes and neighbours never shift. */
+.stack--reveal .shape,
+.stack--reveal .lines:not(.shape) {
+  transition: opacity 0.16s ease;
+  transition-delay: 0.16s;           /* on the way back: wait for the blurb */
+}
+.stack--reveal .blurb {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 13px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: var(--blurb-size);
+  line-height: 1.28;
+  letter-spacing: 0.005em;
+  text-transform: none;              /* sentence case */
+  color: var(--ink);
+  opacity: 0;
+  transition: opacity 0.16s ease;
+  transition-delay: 0s;              /* leaves immediately on the way out */
+  pointer-events: none;
+}
+.stack--reveal:hover .shape,
+.stack--reveal:hover .lines:not(.shape) {
+  opacity: 0;
+  transition-delay: 0s;              /* icon out first, no delay */
+}
+.stack--reveal:hover .blurb {
+  opacity: 1;
+  transition-delay: 0.16s;           /* blurb in only once the icon clears */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shape, .lines:not(.shape), .blurb {
+    transition-duration: 0.01ms;
+    transition-delay: 0ms;
+  }
+}

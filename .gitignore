@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Raw / unpublished media — never ship source renders (transcode to media/video/web/)
+media/video/source/
+
+# Editor / tooling cruft
+*.swp
+*.tmp
+.vscode/
+.idea/
+
+# Internal working notes — kept local, not published to the public repo
+copy/
+docs/
+CLAUDE.md
+
+# Local tooling config
+.claude/

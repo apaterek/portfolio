@@ -1,0 +1,31 @@
+/* ============================================================
+   TOKENS — the single source of truth for the design system.
+
+   Consolidated out of the three chat-built pages. Where values
+   had drifted between sessions, writing.html's values win (it
+   had the most build work behind it). Change a value here and it
+   changes everywhere — never re-declare these in a page.
+   ============================================================ */
+:root {
+  /* Palette ------------------------------------------------ */
+  --background-color: #f2f3ef;   /* was #f2f0eb on work/index — writing wins */
+  --ink:              #111111;   /* was #1a1a1a on work/index — writing wins */
+
+  /* Type --------------------------------------------------- */
+  --font-body: -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --large:  61.05px; /* site title. Tuned so 2 lines exactly match the 5-item
+                        nav block height (nav ≈ 116px ÷ 1.9 lines-per-em).
+                        Re-tune if the nav item count changes. */
+  --medium: 32px;
+  --small:  16px;
+
+  /* Layout ------------------------------------------------- */
+  --page-gutter: 32px;   /* was 40px on work/index — writing wins */
+  --gutter:      18px;
+  --columns:     8;
+
+  /* Contour link ------------------------------------------ */
+  --stroke:      2px;    /* silhouette outline weight */
+  --blurb-size:  9px;    /* work-grid blurb type — one dial for every card,
+                            sized by the smallest card so it stays consistent */
+}
