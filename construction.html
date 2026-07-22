@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KSA</title>
+<style>
+  /* Tokens mirrored from the portfolio (kept inline so this page is
+     self-contained and can deploy on its own). */
+  :root {
+    --background-color: #f2f3ef;
+    --ink: #111111;
+    --font-body: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    --stroke: 2px;
+
+    /* Text colour. Starts as ink; the color phase cycles this through
+       the six poster-derived tones below. */
+    --text-color: var(--ink);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--background-color);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* "Click Anywhere" — very top, small, left edge matched to the frame */
+  .hint {
+    position: fixed;
+    top: 22px;
+    left: 0; right: 0;
+    margin: 0 auto;
+    width: min(680px, 92vw);
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-color);
+    transition: color 0.28s ease;
+  }
+
+  /* Centered stack: above-line / video / below-line.
+     Stage width == video width, so the lines' left edge (text-align:left)
+     sits exactly on the video frame's left edge. */
+  .stage {
+    width: min(680px, 92vw);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 62vh;
+    border: var(--stroke) solid var(--ink);
+    background: var(--ink);
+    overflow: hidden;
+  }
+  .frame video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Large left-aligned copy, sized like the site wordmark */
+  .line {
+    text-align: left;
+    white-space: nowrap;            /* lines grow rightward from the frame edge */
+    font-weight: 700;
+    font-size: clamp(26px, 6vw, 61px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: var(--text-color);
+    min-height: 1.05em;            /* reserve height so the video never jumps */
+    transition: color 0.28s ease;
+  }
+  .above { margin-bottom: 18px; }
+  .below { margin-top: 18px; }
+
+  /* One reveal token per click. Hidden = display:none so the line
+     visibly grows as words arrive; shown = inline-block + a small pop. */
+  .word { display: none; margin-right: 0.28em; }
+  .word.show { display: inline-block; animation: pop 0.22s ease both; }
+  .word.punct { margin-right: 0; margin-left: -0.28em; }   /* period sits flush to READY */
+
+  @keyframes pop {
+    from { opacity: 0; transform: translateY(3px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .word.show { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="hint" id="hint">Click Anywhere</div>
+
+  <div class="stage">
+    <div class="line above" id="above"></div>
+    <div class="frame">
+      <video autoplay muted loop playsinline preload="auto"
+             poster="media/video/web/ksa-water-poster.jpg">
+        <source src="media/video/web/ksa-water-loop.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="line below" id="below"></div>
+  </div>
+
+  <script>
+    // Reveal order reads top-to-bottom: KINDA SORTA ALMOST IS / SORTA ALMOST READY.
+    var tokens = [
+      { t: 'KINDA',  line: 'above' },
+      { t: 'SORTA',  line: 'above' },
+      { t: 'ALMOST', line: 'above' },
+      { t: 'IS',     line: 'above' },
+      { t: 'SORTA',  line: 'below' },
+      { t: 'ALMOST', line: 'below' },
+      { t: 'READY',  line: 'below' },
+      { t: '.',      line: 'below', punct: true }
+    ];
+
+    // Nine tones from the water poster: the 6 muted originals plus 3 light,
+    // desaturated highlights (dusty rose, warm greige, lilac) kept close to
+    // white and true to the image. Cycling is randomised (see nextColor) for an
+    // arrhythmic feel, excluding only the last 3 so repeats never land too close.
+    var colors = [
+      '#DCCFD3',   // soft dusty rose — light desaturated highlight
+      '#1B4C4B',   // deep teal
+      '#9B92A7',   // light lavender
+      '#DDD5CB',   // warm greige — light desaturated highlight
+      '#4C6C7B',   // steel blue
+      '#3B4F43',   // forest green
+      '#D2CBDA',   // soft lilac — light desaturated highlight
+      '#868097',   // periwinkle
+      '#7E7176'    // mauve
+    ];
+
+    var aboveEl = document.getElementById('above');
+    var belowEl = document.getElementById('below');
+
+    // Pre-build every word span (hidden); clicks reveal them in order.
+    var spans = tokens.map(function (tok) {
+      var s = document.createElement('span');
+      s.className = 'word' + (tok.punct ? ' punct' : '');
+      s.textContent = tok.t;
+      (tok.line === 'above' ? aboveEl : belowEl).appendChild(s);
+      return s;
+    });
+
+    var N = tokens.length;   // reveal clicks before the colour phase
+    var clicks = 0;
+    var recent = [];         // last few colours shown, to avoid repeating too close
+
+    // Random pick, but never one of the last 3 shown — arrhythmic, yet a colour
+    // can still return within ~8 steps, just never right on top of itself.
+    function nextColor() {
+      var avail = colors.filter(function (c) { return recent.indexOf(c) === -1; });
+      var pick = avail[Math.floor(Math.random() * avail.length)];
+      recent.push(pick);
+      if (recent.length > 3) recent.shift();
+      return pick;
+    }
+
+    document.addEventListener('click', function () {
+      if (clicks < N) {
+        spans[clicks].classList.add('show');   // reveal next word / mark
+      } else {
+        document.documentElement.style.setProperty('--text-color', nextColor());
+      }
+      clicks++;
+    });
+  </script>
+
+</body>
+</html>
