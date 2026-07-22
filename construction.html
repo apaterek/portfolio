@@ -58,6 +58,7 @@
     width: min(680px, 92vw);
     display: flex;
     flex-direction: column;
+    container-type: inline-size;   /* lines size to this width via cqi */
   }
 
   .frame {
@@ -80,7 +81,10 @@
     text-align: left;
     white-space: nowrap;            /* lines grow rightward from the frame edge */
     font-weight: 700;
-    font-size: clamp(26px, 6vw, 61px);
+    /* Sized in container-query units (of the frame width) so the longest line
+       always ends before the frame's right edge. 7.6cqi keeps "KINDA SORTA
+       ALMOST IS" (the widest) within the frame with a safe margin at any size. */
+    font-size: clamp(20px, 7.6cqi, 52px);
     line-height: 1.05;
     letter-spacing: -0.02em;
     text-transform: uppercase;
