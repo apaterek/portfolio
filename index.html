@@ -9,38 +9,62 @@
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/reveal.css">
-<script src="assets/js/reveal.js"></script>
 <style>
   /* Header is revealed only on the final click. Hidden (and non-interactive)
      until then so it can't catch the reveal clicks. */
   .site-header { opacity: 0; visibility: hidden; transition: opacity 0.5s ease; }
   .site-header.show { opacity: 1; visibility: visible; }
 
-  /* Final state ("done"): the reveal copy is cleared, the stack shifts up
-     under the header, and the photo gallery flows below the video. */
+  /* Word revealed centered OVER the looping water, one per click. */
+  .frame { position: relative; }
+  .overword {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 16px;
+    pointer-events: none;
+  }
+  .overword .ow-word {
+    font-weight: 700;
+    font-size: clamp(32px, 7vw, 80px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 0 30px rgba(0,0,0,0.6), 0 2px 10px rgba(0,0,0,0.5);
+    animation: owPop 0.3s ease both;
+  }
+  @keyframes owPop {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* Final state ("done"): the stack shifts up under the header and the photo
+     gallery flows below the video. */
   body.reveal.done {
     justify-content: flex-start;
     padding-top: 200px;
     padding-bottom: 80px;
   }
-  body.reveal.done .line { display: none; }        /* remove all text around the video */
 
-  /* Photo gallery below the water loop. It sits in a container wider than the
-     video (which stays centered/unchanged), the images vary in size, and each
-     is nudged left/right so its edge breaks past the video frame. No strokes.
-     Hidden during the reveal; fades in on its own once the header appears. */
+  /* Photo gallery below the water loop. Wider than the video (which stays
+     centered/unchanged); images vary in size but are never taller than the
+     video, and each is nudged left/right (arrhythmic). No strokes. Appears
+     with the header on the final click. */
   .more {
     display: none;
     width: min(1120px, 96vw);
     margin-top: 44px;
   }
-  body.reveal.done .more { display: block; animation: fadeUp 0.5s ease 0.35s both; }
+  body.reveal.done .more { display: block; animation: fadeUp 0.5s ease both; }
   .more img {
     display: block;
-    width: var(--iw, 100%);
-    max-width: 100%;
-    height: auto;
-    margin: 0 auto 46px;                 /* centered on the video's axis */
+    height: calc(var(--video-h, 400px) * var(--ihf, 0.8));   /* never taller than the video */
+    width: auto;
+    margin: 0 auto 46px;                     /* centered on the video's axis */
     transform: translateX(var(--sx, 0px));   /* arrhythmic left/right nudge (JS) */
   }
   .more img:last-child { margin-bottom: 0; }
@@ -77,108 +101,81 @@
 
   <!-- The video is the constraint: centered, fixed size, unchanged. -->
   <div class="stage">
-    <div class="line above" id="above"></div>
     <div class="frame">
       <video autoplay muted loop playsinline preload="auto"
              poster="media/video/web/ksa-water-poster.jpg">
         <source src="media/video/web/ksa-water-loop.mp4" type="video/mp4">
       </video>
+      <div class="overword" id="overword" aria-hidden="true"></div>
     </div>
-    <div class="line below" id="below"></div>
   </div>
 
-  <!-- Photo gallery. Varied widths (--iw); JS sets the left/right nudge (--sx). -->
+  <!-- Photo gallery. Varied heights (--ihf, fraction of the video height);
+       JS sets the left/right nudge (--sx) and the live --video-h. -->
   <div class="more" id="more">
-    <img loading="lazy" alt="" style="--iw:760px" src="media/images/instagram/ig-20130405-17842851268039811.jpg">
-    <img loading="lazy" alt="" style="--iw:700px" src="media/images/instagram/ig-20130717-17842879720039811.jpg">
-    <img loading="lazy" alt="" style="--iw:860px" src="media/images/instagram/ig-20180831-17876140687266239.jpg">
-    <img loading="lazy" alt="" style="--iw:920px" src="media/images/instagram/ig-20181106-17970404773133779.jpg">
-    <img loading="lazy" alt="" style="--iw:800px" src="media/images/instagram/ig-20201031-17898995464612752.jpg">
-    <img loading="lazy" alt="" style="--iw:980px" src="media/images/instagram/ig-20201116-17883196828869639.jpg">
-    <img loading="lazy" alt="" style="--iw:880px" src="media/images/instagram/ig-20210318-18201525439006517.jpg">
-    <img loading="lazy" alt="" style="--iw:780px" src="media/images/instagram/ig-20210319-17889760877017074-2.jpg">
-    <img loading="lazy" alt="" style="--iw:840px" src="media/images/instagram/ig-20210319-17889760877017074-7.jpg">
-    <img loading="lazy" alt="" style="--iw:640px" src="media/images/instagram/ig-20210319-17895297250922037.jpg">
-    <img loading="lazy" alt="" style="--iw:760px" src="media/images/instagram/ig-20210319-17910450430719360.jpg">
-    <img loading="lazy" alt="" style="--iw:680px" src="media/images/instagram/ig-20210319-17921419504536491.jpg">
-    <img loading="lazy" alt="" style="--iw:960px" src="media/images/instagram/ig-20210418-17882382629231591.jpg">
+    <img loading="lazy" alt="" style="--ihf:0.80" src="media/images/instagram/ig-20130717-17842879720039811.jpg">
+    <img loading="lazy" alt="" style="--ihf:0.92" src="media/images/instagram/ig-20180831-17876140687266239.jpg">
+    <img loading="lazy" alt="" style="--ihf:0.70" src="media/images/instagram/ig-20181106-17970404773133779.jpg">
+    <img loading="lazy" alt="" style="--ihf:0.85" src="media/images/instagram/ig-20201031-17898995464612752.jpg">
+    <img loading="lazy" alt="" style="--ihf:0.95" src="media/images/instagram/ig-20201116-17883196828869639.jpg">
+    <img loading="lazy" alt="" style="--ihf:0.78" src="media/images/instagram/ig-20210318-18201525439006517.jpg">
+    <img loading="lazy" alt="" style="--ihf:0.88" src="media/images/instagram/ig-20210319-17889760877017074-2.jpg">
+    <img loading="lazy" alt="" style="--ihf:0.72" src="media/images/instagram/ig-20210319-17889760877017074-7.jpg">
+    <img loading="lazy" alt="" style="--ihf:0.98" src="media/images/instagram/ig-20210319-17895297250922037.jpg">
+    <img loading="lazy" alt="" style="--ihf:0.66" src="media/images/instagram/ig-20210319-17910450430719360.jpg">
+    <img loading="lazy" alt="" style="--ihf:0.90" src="media/images/instagram/ig-20210319-17921419504536491.jpg">
+    <img loading="lazy" alt="" style="--ihf:0.82" src="media/images/instagram/ig-20210418-17882382629231591.jpg">
+    <img loading="lazy" alt="" style="--ihf:0.75" src="media/images/instagram/ig-20130405-17842851268039811.jpg">
   </div>
 
   <script>
-    // Reveal sequence:
-    //   clicks 1-4   -> top line KINDA SORTA ALMOST IS (one word each)
-    //   clicks 5-10  -> below word cycles CREATIVE..AUSTIN PATEREK (9-colour cycle)
-    //   click 11     -> header appears, all reveal text is removed; done.
-    // The photo gallery then fades in on its own (CSS), no click required.
-    var aboveWords = ['KINDA', 'SORTA', 'ALMOST', 'IS'];
-    var belowWords = ['CREATIVE', 'IMAGINATION', 'CONTENT', 'EXPERIENCE', 'STRATEGY', 'AUSTIN PATEREK'];
+    // Opening is the same: "Click Anywhere" over the looping water. Then one word
+    // appears centered over the video per click, in order. The click after the
+    // last word removes it and, at the same moment, brings in the header and the
+    // whole photo gallery.
+    var words = ['CREATIVE', 'STRATEGY', 'CONTENT', 'EXPERIENCE'];
+    var overword = document.getElementById('overword');
+    var hint     = document.getElementById('hint');
+    var header   = document.getElementById('site-header');
 
-    var aboveEl = document.getElementById('above');
-    var belowEl = document.getElementById('below');
-    var hint    = document.getElementById('hint');
-    var header  = document.getElementById('site-header');
-    var stage   = document.querySelector('.stage');
-
-    var aboveSpans = aboveWords.map(function (w) {
-      var s = document.createElement('span');
-      s.className = 'word';
-      s.textContent = w;
-      aboveEl.appendChild(s);
-      return s;
-    });
-
-    // Fit to the frame width: the full top line plus every below candidate.
-    var measureEls = [aboveEl];
-    belowWords.forEach(function (w) {
-      var d = document.createElement('div'); d.className = 'line';
-      var s = document.createElement('span'); s.className = 'word'; s.textContent = w;
-      d.appendChild(s); measureEls.push(d);
-    });
-    KSAReveal.fitToFrame(stage, measureEls);
-
-    var nextColor = KSAReveal.makeColorCycler(3);
-    var A = aboveWords.length;               // 4 top-line reveals
-    var revealClicks = A + belowWords.length; // 10; the 10th reveals AUSTIN PATEREK
-    var totalClicks = revealClicks + 1;       // 11; the 11th brings in the header
+    var total = words.length + 1;   // 4 words + 1 final click
     var clicks = 0;
 
     document.addEventListener('click', function () {
-      if (clicks >= totalClicks) return;               // done; nav clicks pass through
-      if (clicks < A) {
-        aboveSpans[clicks].classList.add('show');       // reveal next top word
-      } else if (clicks < revealClicks) {
-        var word = belowWords[clicks - A];
-        belowEl.innerHTML = '<span class="word show">' + word + '</span>';
-        belowEl.style.color = nextColor();
+      if (clicks >= total) return;                       // done; nav clicks pass through
+      if (clicks < words.length) {
+        overword.innerHTML = '<span class="ow-word">' + words[clicks] + '</span>';
       } else {
-        // Separate click after the name: header in, text out, gallery follows.
-        header.classList.add('show');
+        overword.innerHTML = '';                         // remove the last word
+        header.classList.add('show');                    // ...header appears...
         hint.classList.add('gone');
-        document.body.classList.add('done');
+        document.body.classList.add('done');             // ...and the gallery appears.
       }
       clicks++;
     });
 
-    // Gallery askew (writing.html rules): each image nudged left/right,
-    // direction strictly alternating, magnitude random and scaled to the video
-    // width so image edges break past the video frame. Stable across resize.
+    // Gallery: measure the video and drive (a) --video-h so images never exceed
+    // the video's height, and (b) the left/right nudge per writing.html rules
+    // (alternating direction, random magnitude scaled to the video width).
     (function () {
       var frame = document.querySelector('.frame');
       var imgs = Array.prototype.slice.call(document.querySelectorAll('.more img'));
-      if (!frame || !imgs.length) return;
+      if (!frame) return;
       var sign = Math.random() < 0.5 ? 1 : -1;
       var params = imgs.map(function (_, i) {
-        if (i > 0) sign = -sign;                       // never two consecutive the same way
-        return { sign: sign, factor: 0.05 + Math.random() * 0.07 };   // 0.05..0.12 of video width
+        if (i > 0) sign = -sign;                          // never two consecutive the same way
+        return { sign: sign, factor: 0.05 + Math.random() * 0.07 };
       });
       function apply() {
-        var vw = frame.getBoundingClientRect().width;
+        var r = frame.getBoundingClientRect();
+        document.documentElement.style.setProperty('--video-h', r.height.toFixed(1) + 'px');
         imgs.forEach(function (img, i) {
-          img.style.setProperty('--sx', (params[i].sign * params[i].factor * vw).toFixed(1) + 'px');
+          img.style.setProperty('--sx', (params[i].sign * params[i].factor * r.width).toFixed(1) + 'px');
         });
       }
       apply();
       window.addEventListener('resize', apply);
+      window.addEventListener('load', apply);
     })();
   </script>
 
