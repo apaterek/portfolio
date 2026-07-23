@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IG Picker</title>
+<style>
+  :root { --ink:#111; --paper:#fff; --line:#111; --dim:#888; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; background:var(--paper); color:var(--ink); padding:32px; }
+  h1 { font-size:14px; letter-spacing:.12em; margin-bottom:24px; }
+  .bar { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:20px; }
+  input[type=password] { flex:1 1 320px; border:1px solid var(--line); padding:10px 12px; font:inherit; }
+  button { border:1px solid var(--line); background:var(--paper); color:var(--ink); padding:10px 16px; font:inherit; font-size:12px; letter-spacing:.08em; cursor:pointer; }
+  button:hover:not(:disabled) { background:var(--ink); color:var(--paper); }
+  button:disabled { opacity:.35; cursor:default; }
+  .meta { font-size:12px; color:var(--dim); }
+  .filters { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; align-items:center; }
+  .filters[hidden] { display:none; }
+  .filters .chip.on { background:var(--ink); color:var(--paper); }
+  #grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:14px; }
+  .tile { border:1px solid var(--line); cursor:pointer; position:relative; }
+  .tile img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; }
+  .tile .cap { font-size:11px; padding:6px 8px; color:var(--dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .tile .badge { position:absolute; top:6px; left:6px; background:var(--paper); border:1px solid var(--line); font-size:10px; padding:2px 6px; }
+  .tile.sel { outline:3px solid var(--ink); outline-offset:-3px; }
+  .tile.sel::after { content:"✓"; position:absolute; top:6px; right:6px; background:var(--ink); color:var(--paper); width:22px; height:22px; display:grid; place-items:center; font-size:13px; }
+  #log { margin-top:20px; font-size:12px; white-space:pre-wrap; color:var(--dim); }
+  #err { margin:12px 0; font-size:12px; color:#b00020; white-space:pre-wrap; }
+</style>
+</head>
+<body>
+<h1>IG PICKER — SELECT &amp; DOWNLOAD</h1>
+
+<div class="bar">
+  <input id="token" type="password" placeholder="Paste Instagram access token" autocomplete="off">
+  <button id="connect">CONNECT</button>
+  <button id="forget" title="Remove saved token">FORGET</button>
+  <span class="meta" id="who"></span>
+</div>
+<div id="err"></div>
+
+<div class="bar" id="destbar">
+  <span class="meta">SAVE TO</span>
+  <input id="dest" type="text" style="flex:1 1 320px; border:1px solid var(--line); padding:10px 12px; font:inherit; font-size:12px;" placeholder="loading default…" autocomplete="off" spellcheck="false">
+  <button id="destreset" title="Reset to portfolio media folder">DEFAULT</button>
+  <button id="reveal" title="Open this folder in Finder">OPEN IN FINDER</button>
+</div>
+
+<div class="filters" id="filters" hidden>
+  <button class="chip on" data-f="all">ALL</button>
+  <button class="chip" data-f="IMAGE">IMAGES</button>
+  <button class="chip" data-f="VIDEO">VIDEOS</button>
+  <span class="meta" style="margin-left:auto" id="count"></span>
+  <button id="selall">SELECT ALL</button>
+  <button id="selnone">CLEAR</button>
+  <button id="dl" disabled>DOWNLOAD SELECTED</button>
+</div>
+
+<div id="grid"></div>
+<div id="log"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+let items = [], selected = new Set(), filter = "all";
+
+const savedToken = localStorage.getItem("ig_token");
+if (savedToken) $("#token").value = savedToken;
+
+let defaultDest = "";
+fetch("/api/config").then(r => r.json()).then(c => {
+  defaultDest = c.default_dest;
+  $("#dest").value = localStorage.getItem("ig_dest") || defaultDest;
+});
+$("#dest").addEventListener("change", () => localStorage.setItem("ig_dest", $("#dest").value.trim()));
+$("#destreset").onclick = () => { $("#dest").value = defaultDest; localStorage.removeItem("ig_dest"); };
+$("#reveal").onclick = async () => {
+  try { await api("/api/reveal", { dest: $("#dest").value.trim() }); }
+  catch (e) { $("#log").textContent = "Open folder: " + e.message; }
+};
+
+async function api(path, body) {
+  const r = await fetch(path, { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(body) });
+  const j = await r.json();
+  if (!r.ok) throw new Error(j.detail ? JSON.stringify(j.detail, null, 2) : (j.error || r.status));
+  return j;
+}
+
+function fname(it) {
+  const d = (it.timestamp || "").slice(0, 10).replaceAll("-", "");
+  const idx = it.carousel ? "-" + it.carousel.split("/")[0] : "";
+  const ext = it.media_type === "VIDEO" ? ".mp4" : ".jpg";
+  return `ig-${d}-${it.parent_id || it.id}${idx}${ext}`;
+}
+
+function render() {
+  const grid = $("#grid"); grid.innerHTML = "";
+  const shown = items.filter(it => filter === "all" || it.media_type === filter);
+  for (const it of shown) {
+    const t = document.createElement("div");
+    t.className = "tile" + (selected.has(it.id) ? " sel" : "");
+    const src = it.media_type === "VIDEO" ? (it.thumbnail_url || "") : it.media_url;
+    const badge = it.carousel ? `<span class="badge">${it.carousel}</span>` :
+                  it.media_type === "VIDEO" ? `<span class="badge">VIDEO</span>` : "";
+    t.innerHTML = `${badge}<img loading="lazy" src="${src}" alt="">` +
+      `<div class="cap" title="${(it.caption||"").replace(/"/g,"&quot;")}">${(it.timestamp||"").slice(0,10)} · ${it.caption || "no caption"}</div>`;
+    t.onclick = () => { selected.has(it.id) ? selected.delete(it.id) : selected.add(it.id); render(); };
+    grid.appendChild(t);
+  }
+  $("#count").textContent = `${shown.length} shown · ${selected.size} selected`;
+  $("#dl").disabled = selected.size === 0;
+}
+
+$("#connect").onclick = async () => {
+  const token = $("#token").value.trim();
+  if (!token) return;
+  $("#err").textContent = ""; $("#who").textContent = "connecting…";
+  try {
+    const me = await api("/api/profile", { token });
+    localStorage.setItem("ig_token", token);
+    $("#who").textContent = `@${me.username} · ${me.media_count} posts · loading media…`;
+    const m = await api("/api/media", { token });
+    items = m.items; selected = new Set();
+    $("#filters").hidden = false;
+    $("#who").textContent = `@${me.username} · ${items.length} downloadable items`;
+    render();
+  } catch (e) { $("#who").textContent = ""; $("#err").textContent = "Error: " + e.message; }
+};
+
+$("#forget").onclick = () => { localStorage.removeItem("ig_token"); $("#token").value = ""; $("#who").textContent = "token cleared"; };
+$("#selall").onclick = () => { items.filter(it => filter === "all" || it.media_type === filter).forEach(it => selected.add(it.id)); render(); };
+$("#selnone").onclick = () => { selected = new Set(); render(); };
+document.querySelectorAll(".chip").forEach(c => c.onclick = () => {
+  document.querySelectorAll(".chip").forEach(x => x.classList.remove("on"));
+  c.classList.add("on"); filter = c.dataset.f; render();
+});
+
+$("#dl").onclick = async () => {
+  const picks = items.filter(it => selected.has(it.id))
+    .map(it => ({ url: it.media_url, filename: fname(it) }));
+  $("#log").textContent = `Downloading ${picks.length} file(s)…`;
+  $("#dl").disabled = true;
+  try {
+    const res = await api("/api/download", { items: picks, dest: $("#dest").value.trim() });
+    const ok = res.results.filter(r => r.saved);
+    const bad = res.results.filter(r => r.error);
+    $("#log").textContent =
+      `Saved ${ok.length}/${res.results.length} to ${res.dest}/\n` +
+      ok.map(r => `  ✓ ${r.saved.split("/").pop()} (${(r.bytes/1024).toFixed(0)} KB)`).join("\n") +
+      (bad.length ? "\n" + bad.map(r => `  ✗ ${r.filename}: ${r.error}`).join("\n") : "");
+  } catch (e) { $("#log").textContent = "Download failed: " + e.message; }
+  $("#dl").disabled = false;
+};
+</script>
+</body>
+</html>

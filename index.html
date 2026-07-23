@@ -9,14 +9,17 @@
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/reveal.css">
+<script src="assets/js/reveal.js"></script>
 <style>
   /* Header is revealed only on the final click. Hidden (and non-interactive)
      until then so it can't catch the reveal clicks. */
   .site-header { opacity: 0; visibility: hidden; transition: opacity 0.5s ease; }
   .site-header.show { opacity: 1; visibility: visible; }
 
-  /* Word revealed centered OVER the looping water, one per click. */
-  .frame { position: relative; }
+  /* Word revealed centered OVER the looping water, one per click. Homepage-only
+     override: no outline stroke around the video (reveal.css's shared .frame
+     border stays intact for construction.html). */
+  .frame { position: relative; border: none; }
   .overword {
     position: absolute;
     inset: 0;
@@ -27,14 +30,14 @@
     padding: 0 16px;
     pointer-events: none;
   }
+  /* Colour comes from the shared 9-colour palette, set per word by JS.
+     Style over legibility: no shadow, no scrim. */
   .overword .ow-word {
     font-weight: 700;
     font-size: clamp(32px, 7vw, 80px);
     line-height: 1;
     letter-spacing: -0.02em;
     text-transform: uppercase;
-    color: #fff;
-    text-shadow: 0 0 30px rgba(0,0,0,0.6), 0 2px 10px rgba(0,0,0,0.5);
     animation: owPop 0.3s ease both;
   }
   @keyframes owPop {
@@ -138,13 +141,17 @@
     var hint     = document.getElementById('hint');
     var header   = document.getElementById('site-header');
 
+    // Each word takes a random colour from the shared 9-colour palette, using the
+    // same arrhythmic rule as the rest of the site (never one of the last 3).
+    var nextColor = KSAReveal.makeColorCycler(3);
     var total = words.length + 1;   // 4 words + 1 final click
     var clicks = 0;
 
     document.addEventListener('click', function () {
       if (clicks >= total) return;                       // done; nav clicks pass through
       if (clicks < words.length) {
-        overword.innerHTML = '<span class="ow-word">' + words[clicks] + '</span>';
+        overword.innerHTML =
+          '<span class="ow-word" style="color:' + nextColor() + '">' + words[clicks] + '</span>';
       } else {
         overword.innerHTML = '';                         // remove the last word
         header.classList.add('show');                    // ...header appears...
