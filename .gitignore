@@ -3,6 +3,7 @@
 
 # Raw / unpublished media — never ship source renders (transcode to media/video/web/)
 media/video/source/
+media/video/personal-archive/
 
 # Editor / tooling cruft
 *.swp

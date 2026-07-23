@@ -11,7 +11,7 @@ main.work-grid { grid-row-gap: 60px; }
 .project-card {
   display: block;
   width: 100%;
-  max-width: 300px;
+  max-width: 360px;
   text-decoration: none;
   color: inherit;
 }
@@ -20,10 +20,21 @@ main.work-grid { grid-row-gap: 60px; }
 .poster {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 4;              /* poster shape; one line to change */
+  aspect-ratio: 16 / 9;            /* poster shape; one line to change */
   border: var(--stroke) solid var(--ink);
   background: var(--background-color);
   overflow: hidden;
+}
+
+/* Video-transition card (Nutella): a muted 2s clip that plays on hover. */
+.poster-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 .poster img {
   width: 100%;
@@ -77,10 +88,19 @@ main.work-grid { grid-row-gap: 60px; }
   text-transform: uppercase;
 }
 
-/* Hover: poster (image or placeholder) fades out, blurb fades in */
-.project-card:hover .poster-ph,
-.project-card:hover .poster img { opacity: 0; }
-.project-card:hover .blurb { opacity: 1; }
+/* Default hover: poster (image or placeholder) fades out, blurb fades in.
+   Excludes the video card, whose sequence is driven by JS below. */
+.project-card:not(.has-video):hover .poster-ph,
+.project-card:not(.has-video):hover .poster img { opacity: 0; }
+.project-card:not(.has-video):hover .blurb { opacity: 1; }
+
+/* Video card sequence (JS toggles .playing then .done):
+   hover -> placeholder out, video plays; on end -> video out, blurb in. */
+.project-card.has-video.playing .poster-ph { opacity: 0; }
+.project-card.has-video.playing .poster-video { opacity: 1; }
+.project-card.has-video.done .poster-ph { opacity: 0; }
+.project-card.has-video.done .poster-video { opacity: 0; }
+.project-card.has-video.done .blurb { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   .poster img, .poster-ph, .blurb { transition-duration: 0.01ms; }

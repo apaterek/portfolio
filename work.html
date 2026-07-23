@@ -41,9 +41,11 @@
       <div class="card-title">Honda Backstage</div>
     </a>
 
-    <a class="project-card" href="work/spread-the-happy.html">
+    <a class="project-card has-video" href="work/spread-the-happy.html">
       <div class="poster">
         <span class="poster-ph">Poster image: to be added</span>
+        <video class="poster-video" muted playsinline preload="auto"
+               src="media/video/web/nutella-transition.mp4"></video>
         <span class="blurb">Brand documentary that moved sales 18% and premiered at Tribeca. Creative producer, Seasons 1 and 2.</span>
       </div>
       <div class="card-title">Nutella // Spread the Happy</div>
@@ -66,6 +68,30 @@
     </a>
 
   </main>
+
+  <script>
+    // Video-transition cards: hover plays the muted clip from the start; when it
+    // ends, the blurb appears. Leaving resets to the poster placeholder.
+    document.querySelectorAll('.project-card.has-video').forEach(function (card) {
+      var video = card.querySelector('.poster-video');
+      if (!video) return;
+      card.addEventListener('mouseenter', function () {
+        card.classList.remove('done');
+        card.classList.add('playing');
+        try { video.currentTime = 0; } catch (e) {}
+        video.play();
+      });
+      video.addEventListener('ended', function () {
+        card.classList.remove('playing');
+        card.classList.add('done');          // clip finished -> show the blurb
+      });
+      card.addEventListener('mouseleave', function () {
+        card.classList.remove('playing', 'done');
+        video.pause();
+        try { video.currentTime = 0; } catch (e) {}
+      });
+    });
+  </script>
 
 </body>
 </html>
