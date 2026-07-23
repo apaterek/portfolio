@@ -132,20 +132,37 @@
   </div>
 
   <script>
+    // The click-reveal runs once per browser session. If it already ran this
+    // session, skip straight to the finished state on load: no hint flash, no
+    // click needed. Navigating Home from any other page (or reloading Home)
+    // during the same session lands on the finished state; a new session (e.g.
+    // the browser was closed and reopened) shows the reveal again.
+    var SESSION_KEY = 'ksaHomeRevealDone';
+    var alreadyDone = sessionStorage.getItem(SESSION_KEY) === '1';
+
+    var overword = document.getElementById('overword');
+    var hint     = document.getElementById('hint');
+    var header   = document.getElementById('site-header');
+
+    if (alreadyDone) {
+      // Applied synchronously before first paint, so there's no flash of the
+      // click-anywhere / hidden-header starting state.
+      header.classList.add('show');
+      hint.classList.add('gone');
+      document.body.classList.add('done');
+    }
+
     // Opening is the same: "Click Anywhere" over the looping water. Then one word
     // appears centered over the video per click, in order. The click after the
     // last word removes it and, at the same moment, brings in the header and the
     // whole photo gallery.
     var words = ['CREATIVE', 'STRATEGY', 'CONTENT', 'EXPERIENCE'];
-    var overword = document.getElementById('overword');
-    var hint     = document.getElementById('hint');
-    var header   = document.getElementById('site-header');
 
     // Each word takes a random colour from the shared 9-colour palette, using the
     // same arrhythmic rule as the rest of the site (never one of the last 3).
     var nextColor = KSAReveal.makeColorCycler(3);
     var total = words.length + 1;   // 4 words + 1 final click
-    var clicks = 0;
+    var clicks = alreadyDone ? total : 0;   // already-done: clicks are inert
 
     document.addEventListener('click', function () {
       if (clicks >= total) return;                       // done; nav clicks pass through
@@ -157,6 +174,7 @@
         header.classList.add('show');                    // ...header appears...
         hint.classList.add('gone');
         document.body.classList.add('done');             // ...and the gallery appears.
+        sessionStorage.setItem(SESSION_KEY, '1');         // remember for this session
       }
       clicks++;
     });
