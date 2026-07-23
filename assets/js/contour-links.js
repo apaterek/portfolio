@@ -49,13 +49,13 @@
      (e.g. the Writing grid), nudge each one left or right off its column's
      centre on load. Horizontal only; buttons stay level and the puzzle-piece
      internals are untouched. Direction strictly alternates so no two consecutive
-     icons shift the same way, and the random magnitude (up to 30px, which stays
+     icons shift the same way, and the random magnitude (up to 24px, which stays
      inside the column margin even for the widest icon, so nothing collides) lets
      some land at or near centre. Echoes the arrhythmic colour cycles. */
   var askewSign = Math.random() < 0.5 ? 1 : -1;   // random starting side
   document.querySelectorAll(".askew .stack").forEach(function (stack, i) {
     if (i > 0) askewSign = -askewSign;             // alternate: never two in a row the same way
-    var x = askewSign * Math.random() * 30;        // 0..30px left/right; some land near centre
+    var x = askewSign * Math.random() * 24;        // 0..24px left/right; some land near centre
     stack.style.transform = "translateX(" + x.toFixed(1) + "px)";
   });
 })();
