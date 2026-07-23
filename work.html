@@ -5,11 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Work · Austin Paterek</title>
 
-<!-- Shared design system. Order matters: tokens → base → components. -->
+<!-- Shared design system: tokens + header/nav (base) + work-grid cards. -->
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" href="assets/css/components.css">
-<script src="assets/js/contour-links.js" defer></script>
+<link rel="stylesheet" href="assets/css/work.css">
 </head>
 <body>
 
@@ -29,34 +28,41 @@
     </nav>
   </header>
 
-  <main class="container">
+  <main class="container work-grid">
 
-    <a class="stack stack--reveal" href="work/honda-backstage.html">
-      <span class="lines">
-        <b>HONDA</b><b>BACKSTAGE</b>
-      </span>
-      <span class="blurb">Emerging-artist docs, told in three acts, for Honda's music platform. Creative producer.</span>
+    <!-- Each .poster: swap <span class="poster-ph"> for
+         <img src="media/images/work/<slug>/poster.jpg" alt="..."> when ready. -->
+
+    <a class="project-card" href="work/honda-backstage.html">
+      <div class="poster">
+        <span class="poster-ph">Poster image: to be added</span>
+        <span class="blurb">Emerging-artist docs, told in three acts, for Honda's music platform. Creative producer.</span>
+      </div>
+      <div class="card-title">Honda Backstage</div>
     </a>
 
-    <a class="stack stack--reveal" href="work/spread-the-happy.html">
-      <span class="lines">
-        <b>NUTELLA</b><b>//</b><b>SPREAD</b><b>THE</b><b>HAPPY</b>
-      </span>
-      <span class="blurb">Brand documentary that moved sales 18% and premiered at Tribeca. Creative producer, Seasons 1 and 2.</span>
+    <a class="project-card" href="work/spread-the-happy.html">
+      <div class="poster">
+        <span class="poster-ph">Poster image: to be added</span>
+        <span class="blurb">Brand documentary that moved sales 18% and premiered at Tribeca. Creative producer, Seasons 1 and 2.</span>
+      </div>
+      <div class="card-title">Nutella // Spread the Happy</div>
     </a>
 
-    <a class="stack stack--reveal" href="work/hyper-history.html">
-      <span class="lines">
-        <b>GOOGLE</b><b>ARTS</b><b>&amp;</b><b>CULTURE</b><b>//</b><b>HYPER</b><b>HISTORY</b>
-      </span>
-      <span class="blurb">A 300,000-object archive, told one strange object at a time. Writer, creative producer, creative direction.</span>
+    <a class="project-card" href="work/hyper-history.html">
+      <div class="poster">
+        <span class="poster-ph">Poster image: to be added</span>
+        <span class="blurb">A 300,000-object archive, told one strange object at a time. Writer, creative producer, creative direction.</span>
+      </div>
+      <div class="card-title">Google Arts &amp; Culture // Hyper History</div>
     </a>
 
-    <a class="stack stack--reveal" href="work/off-the-plate.html">
-      <span class="lines">
-        <b>OFF</b><b>THE</b><b>PLATE</b>
-      </span>
-      <span class="blurb">An MLB food-and-travel format engineered as IP. Creator, format and brand development.</span>
+    <a class="project-card" href="work/off-the-plate.html">
+      <div class="poster">
+        <span class="poster-ph">Poster image: to be added</span>
+        <span class="blurb">An MLB food-and-travel format engineered as IP. Creator, format and brand development.</span>
+      </div>
+      <div class="card-title">Off The Plate</div>
     </a>
 
   </main>
