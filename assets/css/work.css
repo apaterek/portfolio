@@ -21,9 +21,8 @@ main.work-grid { grid-row-gap: 60px; }
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;            /* poster shape; one line to change */
-  border: var(--stroke) solid var(--ink);
   background: var(--background-color);
-  overflow: hidden;
+  overflow: hidden;               /* no frame stroke now that images are placed */
 }
 
 /* Video-transition card (Nutella): a muted 2s clip that plays on hover. */
@@ -99,6 +98,7 @@ main.work-grid { grid-row-gap: 60px; }
 .project-card.has-video.playing .poster-ph { opacity: 0; }
 .project-card.has-video.playing .poster-video { opacity: 1; }
 .project-card.has-video.done .poster-ph { opacity: 0; }
+.project-card.has-video.done .poster img { opacity: 0; }
 .project-card.has-video.done .poster-video { opacity: 0; }
 .project-card.has-video.done .blurb { opacity: 1; }
 
