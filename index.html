@@ -5,14 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Austin Paterek</title>
 
-<!-- Shared design system. Home: tokens → base → home. -->
+<!-- Shared design system: tokens + header/nav (base) + reveal hero. -->
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" href="assets/css/home.css">
+<link rel="stylesheet" href="assets/css/reveal.css">
+<script src="assets/js/reveal.js"></script>
+<style>
+  /* Header is revealed only after the name appears. Hidden (and
+     non-interactive) until then so it can't catch the reveal clicks. */
+  .site-header { opacity: 0; visibility: hidden; transition: opacity 0.5s ease; }
+  .site-header.show { opacity: 1; visibility: visible; }
+</style>
 </head>
-<body>
+<body class="reveal">
 
-  <header class="container">
+  <header class="container site-header" id="site-header">
     <h1 class="site-title">
       <span>AUSTIN</span>
       <span class="indent">PATEREK</span>
@@ -20,27 +27,80 @@
     <nav>
       <ul>
         <li class="active" data-text="Home"><a href="index.html">Home</a></li>
-        <li data-text="Work"><a href="work.html">Work</a></li>
         <li data-text="About"><a href="about.html">About</a></li>
+        <li data-text="Work"><a href="work.html">Work</a></li>
         <li data-text="Writing"><a href="writing.html">Writing</a></li>
         <li data-text="Contact"><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <main class="hero">
-    <div class="video-frame">
-      <video
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto"
-        poster="media/video/web/ksa-water-poster.jpg">
+  <div class="hint" id="hint">Click Anywhere</div>
+
+  <div class="stage">
+    <div class="line above" id="above"></div>
+    <div class="frame">
+      <video autoplay muted loop playsinline preload="auto"
+             poster="media/video/web/ksa-water-poster.jpg">
         <source src="media/video/web/ksa-water-loop.mp4" type="video/mp4">
       </video>
     </div>
-  </main>
+    <div class="line below" id="below"></div>
+  </div>
+
+  <script>
+    // Top line reveals one word per click; then the line below the video swaps
+    // to the next word each click (each in a fresh cycle colour). When the name
+    // appears, the header slides in and the hint drops.
+    var aboveWords = ['KINDA', 'SORTA', 'ALMOST', 'IS'];
+    var belowWords = ['CREATIVE', 'IMAGINATION', 'CONTENT', 'EXPERIENCE', 'STRATEGY', 'AUSTIN PATEREK'];
+
+    var aboveEl = document.getElementById('above');
+    var belowEl = document.getElementById('below');
+    var hint    = document.getElementById('hint');
+    var header  = document.getElementById('site-header');
+    var stage   = document.querySelector('.stage');
+
+    // Top line: one word span per click.
+    var aboveSpans = aboveWords.map(function (w) {
+      var s = document.createElement('span');
+      s.className = 'word';
+      s.textContent = w;
+      aboveEl.appendChild(s);
+      return s;
+    });
+
+    // Fit to the frame width: measure the full top line plus every below
+    // candidate (the widest one governs the size, so no swap ever overflows).
+    var measureEls = [aboveEl];
+    belowWords.forEach(function (w) {
+      var d = document.createElement('div'); d.className = 'line';
+      var s = document.createElement('span'); s.className = 'word'; s.textContent = w;
+      d.appendChild(s); measureEls.push(d);
+    });
+    KSAReveal.fitToFrame(stage, measureEls);
+
+    var nextColor = KSAReveal.makeColorCycler(3);   // below word uses the 9-colour cycle
+    var A = aboveWords.length;                       // 4 top-line reveals
+    var total = A + belowWords.length;               // then 6 below-word swaps
+    var clicks = 0;
+
+    document.addEventListener('click', function () {
+      if (clicks >= total) return;                   // sequence complete; nav clicks pass through
+      if (clicks < A) {
+        aboveSpans[clicks].classList.add('show');    // reveal next top word
+      } else {
+        var word = belowWords[clicks - A];
+        belowEl.innerHTML = '<span class="word show">' + word + '</span>';
+        belowEl.style.color = nextColor();
+        if (clicks === total - 1) {                  // AUSTIN PATEREK just appeared
+          header.classList.add('show');
+          hint.classList.add('gone');
+        }
+      }
+      clicks++;
+    });
+  </script>
 
 </body>
 </html>

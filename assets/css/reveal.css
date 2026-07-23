@@ -1,0 +1,108 @@
+/* ============================================================
+   REVEAL — the click-to-reveal hero shared by the home (index.html)
+   and the KSA teaser (construction.html): a centered looping video in
+   a bordered frame, a "Click Anywhere" hint, and large left-aligned
+   copy that reveals on click. Sizing + colour behaviour live in
+   assets/js/reveal.js. Depends on tokens.css.
+
+   Golden rule: this is the single source for the reveal styling. Do
+   not re-declare it inside a page.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --text-color: var(--ink);   /* cycled by reveal.js during the colour phase */
+}
+
+body.reveal {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--background-color);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* "Click Anywhere" — centered at the very top */
+.hint {
+  position: fixed;
+  top: 22px;
+  left: 0; right: 0;
+  margin: 0 auto;
+  width: min(760px, 94vw);
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-color);
+  transition: color 0.28s ease, opacity 0.4s ease;
+}
+.hint.gone { opacity: 0; pointer-events: none; }
+
+/* Centered stack: above-line / video / below-line. Stage width == video
+   width, so left-aligned lines sit exactly on the frame's left edge. */
+.stage {
+  width: min(760px, 94vw);
+  display: flex;
+  flex-direction: column;
+  container-type: inline-size;   /* the cqi fallback references this width */
+}
+
+.frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 62vh;
+  border: var(--stroke) solid var(--ink);
+  background: var(--ink);
+  overflow: hidden;
+}
+.frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Large left-aligned copy, sized like the wordmark. --line-fs is measured
+   and set by reveal.js (fitToFrame) so the longest line always ends before
+   the frame's right edge in the real rendering font; the cqi clamp is only
+   a pre-JS fallback. */
+.line {
+  text-align: left;
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: var(--line-fs, clamp(18px, 6.4cqi, 44px));
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--text-color);
+  min-height: 1.05em;            /* reserve height so the video never jumps */
+  transition: color 0.28s ease;
+}
+.above { margin-bottom: 18px; }
+.below { margin-top: 18px; }
+
+/* One reveal token per click: hidden = display:none so the line grows as
+   words arrive; shown = inline-block with a small pop. */
+.word { display: none; margin-right: 0.28em; }
+.word.show { display: inline-block; animation: pop 0.22s ease both; }
+.word.punct { margin-right: 0; margin-left: -0.28em; }   /* punctuation sits flush */
+
+@keyframes pop {
+  from { opacity: 0; transform: translateY(3px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word.show { animation: none; }
+}
