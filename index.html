@@ -11,10 +11,49 @@
 <link rel="stylesheet" href="assets/css/reveal.css">
 <script src="assets/js/reveal.js"></script>
 <style>
-  /* Header is revealed only after the name appears. Hidden (and
-     non-interactive) until then so it can't catch the reveal clicks. */
+  /* Header is revealed only on the final click. Hidden (and non-interactive)
+     until then so it can't catch the reveal clicks. */
   .site-header { opacity: 0; visibility: hidden; transition: opacity 0.5s ease; }
   .site-header.show { opacity: 1; visibility: visible; }
+
+  /* Final state ("done"): the reveal copy is cleared, the stack shifts up
+     under the header, and the media placeholders flow below the video. */
+  body.reveal.done {
+    justify-content: flex-start;
+    padding-top: 200px;
+    padding-bottom: 80px;
+  }
+  body.reveal.done .line { display: none; }        /* remove all text around the video */
+
+  /* Placeholders for images/videos to come. Hidden during the reveal; they
+     appear on their own just after the header (no click needed). */
+  .more { display: none; width: 100%; margin-top: 28px; }
+  body.reveal.done .more { display: block; animation: fadeUp 0.5s ease 0.35s both; }
+  .media-ph {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: var(--stroke) solid var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+  }
+  .media-ph:last-child { margin-bottom: 0; }
+  .media-ph span {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.4;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  @media (max-width: 900px) {
+    body.reveal.done { padding-top: 150px; }
+  }
 </style>
 </head>
 <body class="reveal">
@@ -46,12 +85,22 @@
       </video>
     </div>
     <div class="line below" id="below"></div>
+
+    <!-- Media placeholders below the water loop. Swap each for an
+         <img>/<video>. Reveal themselves once the header appears. -->
+    <div class="more" id="more">
+      <div class="media-ph"><span>Image / video: to be added</span></div>
+      <div class="media-ph"><span>Image / video: to be added</span></div>
+      <div class="media-ph"><span>Image / video: to be added</span></div>
+    </div>
   </div>
 
   <script>
-    // Top line reveals one word per click; then the line below the video swaps
-    // to the next word each click (each in a fresh cycle colour). When the name
-    // appears, the header slides in and the hint drops.
+    // Reveal sequence:
+    //   clicks 1-4   -> top line KINDA SORTA ALMOST IS (one word each)
+    //   clicks 5-10  -> below word cycles CREATIVE..AUSTIN PATEREK (9-colour cycle)
+    //   click 11     -> header appears, all reveal text is removed; done.
+    // Placeholders then fade in on their own (CSS), no click required.
     var aboveWords = ['KINDA', 'SORTA', 'ALMOST', 'IS'];
     var belowWords = ['CREATIVE', 'IMAGINATION', 'CONTENT', 'EXPERIENCE', 'STRATEGY', 'AUSTIN PATEREK'];
 
@@ -61,7 +110,6 @@
     var header  = document.getElementById('site-header');
     var stage   = document.querySelector('.stage');
 
-    // Top line: one word span per click.
     var aboveSpans = aboveWords.map(function (w) {
       var s = document.createElement('span');
       s.className = 'word';
@@ -70,8 +118,7 @@
       return s;
     });
 
-    // Fit to the frame width: measure the full top line plus every below
-    // candidate (the widest one governs the size, so no swap ever overflows).
+    // Fit to the frame width: the full top line plus every below candidate.
     var measureEls = [aboveEl];
     belowWords.forEach(function (w) {
       var d = document.createElement('div'); d.className = 'line';
@@ -80,23 +127,25 @@
     });
     KSAReveal.fitToFrame(stage, measureEls);
 
-    var nextColor = KSAReveal.makeColorCycler(3);   // below word uses the 9-colour cycle
-    var A = aboveWords.length;                       // 4 top-line reveals
-    var total = A + belowWords.length;               // then 6 below-word swaps
+    var nextColor = KSAReveal.makeColorCycler(3);
+    var A = aboveWords.length;               // 4 top-line reveals
+    var revealClicks = A + belowWords.length; // 10; the 10th reveals AUSTIN PATEREK
+    var totalClicks = revealClicks + 1;       // 11; the 11th brings in the header
     var clicks = 0;
 
     document.addEventListener('click', function () {
-      if (clicks >= total) return;                   // sequence complete; nav clicks pass through
+      if (clicks >= totalClicks) return;               // done; nav clicks pass through
       if (clicks < A) {
-        aboveSpans[clicks].classList.add('show');    // reveal next top word
-      } else {
+        aboveSpans[clicks].classList.add('show');       // reveal next top word
+      } else if (clicks < revealClicks) {
         var word = belowWords[clicks - A];
         belowEl.innerHTML = '<span class="word show">' + word + '</span>';
         belowEl.style.color = nextColor();
-        if (clicks === total - 1) {                  // AUSTIN PATEREK just appeared
-          header.classList.add('show');
-          hint.classList.add('gone');
-        }
+      } else {
+        // Separate click after the name: header in, text out, placeholders follow.
+        header.classList.add('show');
+        hint.classList.add('gone');
+        document.body.classList.add('done');
       }
       clicks++;
     });
