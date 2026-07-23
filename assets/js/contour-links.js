@@ -44,4 +44,18 @@
     shape.setAttribute("aria-hidden", "true");
     stack.prepend(shape);
   });
+
+  /* 3 — Arrhythmic askew (opt-in). For links inside an `.askew` container
+     (e.g. the Writing grid), give each a mild, random off-centre nudge on
+     load so they sit organically askew within their column. The grid columns
+     stay aligned/centred (this is a visual-only transform) and the button's
+     internal layout (centred text in the puzzle piece) is untouched. Echoes
+     the arrhythmic colour cycles on index/construction. */
+  document.querySelectorAll(".askew .stack").forEach(function (stack) {
+    var x = (Math.random() * 2 - 1) * 12;   // ±12px horizontal
+    var y = (Math.random() * 2 - 1) * 8;    // ±8px vertical
+    var r = (Math.random() * 2 - 1) * 1.2;  // ±1.2deg tilt
+    stack.style.transform =
+      "translate(" + x.toFixed(1) + "px, " + y.toFixed(1) + "px) rotate(" + r.toFixed(2) + "deg)";
+  });
 })();

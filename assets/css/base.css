@@ -55,7 +55,10 @@ nav ul li {
   font-size: 13px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 2px 0;
+  /* Each item is 1/5 of the 2-line wordmark height (title = 1.9 * --large), so
+     the nav block always equals the wordmark height at every breakpoint. */
+  line-height: calc(1.9 * var(--large) / 5);
+  padding: 0;
   cursor: pointer;
   transition: font-weight 0s;        /* weight can't tween — avoid a delay */
 }
