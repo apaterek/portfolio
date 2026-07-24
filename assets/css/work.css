@@ -88,10 +88,18 @@ main.work-grid { grid-row-gap: 60px; }
 }
 
 /* Default hover: poster (image or placeholder) fades out, blurb fades in.
-   Excludes the video card, whose sequence is driven by JS below. */
-.project-card:not(.has-video):hover .poster-ph,
-.project-card:not(.has-video):hover .poster img { opacity: 0; }
-.project-card:not(.has-video):hover .blurb { opacity: 1; }
+   Excludes the video card, whose sequence is driven by JS below.
+   Gated to real hover devices so touch can't get stuck in :hover. */
+@media (hover: hover) {
+  .project-card:not(.has-video):hover .poster-ph,
+  .project-card:not(.has-video):hover .poster img { opacity: 0; }
+  .project-card:not(.has-video):hover .blurb { opacity: 1; }
+}
+
+/* Touch equivalent: press and hold (assets/js/touch-hold.js). */
+.project-card:not(.has-video).holding .poster-ph,
+.project-card:not(.has-video).holding .poster img { opacity: 0; }
+.project-card:not(.has-video).holding .blurb { opacity: 1; }
 
 /* Video card sequence (JS toggles .playing then .done):
    hover -> placeholder out, video plays; on end -> video out, blurb in. */

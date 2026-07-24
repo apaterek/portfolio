@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/work.css">
+<script src="assets/js/touch-hold.js" defer></script>
 </head>
 <body>
 
@@ -81,21 +82,28 @@
     document.querySelectorAll('.project-card.has-video').forEach(function (card) {
       var video = card.querySelector('.poster-video');
       if (!video) return;
-      card.addEventListener('mouseenter', function () {
+
+      function start() {                     // hover in, or finger held down
         card.classList.remove('done');
         card.classList.add('playing');
         try { video.currentTime = 0; } catch (e) {}
         video.play();
-      });
+      }
+      function reset() {                     // hover out, or finger lifted
+        card.classList.remove('playing', 'done');
+        video.pause();
+        try { video.currentTime = 0; } catch (e) {}
+      }
+
       video.addEventListener('ended', function () {
         card.classList.remove('playing');
         card.classList.add('done');          // clip finished -> show the blurb
       });
-      card.addEventListener('mouseleave', function () {
-        card.classList.remove('playing', 'done');
-        video.pause();
-        try { video.currentTime = 0; } catch (e) {}
-      });
+
+      card.addEventListener('mouseenter', start);
+      card.addEventListener('mouseleave', reset);
+      card.addEventListener('holdstart', start);   // touch: press and hold
+      card.addEventListener('holdend', reset);
     });
   </script>
 

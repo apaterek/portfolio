@@ -56,9 +56,14 @@
 
 /* ---- Hover A — fill / invert (default: writing links) --------
    The silhouette fills with ink and the title inverts to the
-   background colour. */
-.stack:hover:not(.stack--reveal) .shape b            { background: var(--ink); }
-.stack:hover:not(.stack--reveal) .lines:not(.shape) b { color: var(--background-color); }
+   background colour. Gated to real hover devices so touch can't get stuck
+   in :hover; touch gets the same via press-and-hold (touch-hold.js). */
+@media (hover: hover) {
+  .stack:hover:not(.stack--reveal) .shape b            { background: var(--ink); }
+  .stack:hover:not(.stack--reveal) .lines:not(.shape) b { color: var(--background-color); }
+}
+.stack.holding:not(.stack--reveal) .shape b            { background: var(--ink); }
+.stack.holding:not(.stack--reveal) .lines:not(.shape) b { color: var(--background-color); }
 
 /* ---- Hover B — blurb reveal (.stack--reveal: work grid) ------
    Sequenced, not crossfaded: outline + title fade out together,

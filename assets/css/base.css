@@ -18,6 +18,16 @@ body {
 a  { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 
+/* On touch, press-and-hold stands in for hover (assets/js/touch-hold.js).
+   Stop the OS callout/selection UI from hijacking that gesture. */
+@media (hover: none) {
+  .project-card, .stack {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
 /* ---- Shared grid container ---------------------------------- */
 .container {
   padding: var(--page-gutter);
