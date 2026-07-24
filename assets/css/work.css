@@ -25,7 +25,9 @@ main.work-grid { grid-row-gap: 60px; }
   overflow: hidden;               /* no frame stroke now that images are placed */
 }
 
-/* Video-transition card (Nutella): a muted 2s clip that plays on hover. */
+/* Video-transition card: a muted 1s clip that plays on hover / press-and-hold.
+   Poster -> clip -> blurb are HARD CUTS: no opacity transitions anywhere in
+   this stack, so the swap lands like a cut in the montage itself. */
 .poster-video {
   position: absolute;
   inset: 0;
@@ -33,14 +35,12 @@ main.work-grid { grid-row-gap: 60px; }
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 0.2s ease;
 }
 .poster img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: opacity 0.2s ease;
 }
 .poster-ph {
   position: absolute;
@@ -54,10 +54,9 @@ main.work-grid { grid-row-gap: 60px; }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.4;
-  transition: opacity 0.2s ease;
 }
 
-/* Hover blurb — replaces the poster image, centered on its box. */
+/* Hover blurb — replaces the poster image, centered on its box. Hard cut. */
 .blurb {
   position: absolute;
   inset: 0;
@@ -72,7 +71,6 @@ main.work-grid { grid-row-gap: 60px; }
   letter-spacing: 0.005em;
   color: var(--ink);
   opacity: 0;
-  transition: opacity 0.2s ease;
   pointer-events: none;
 }
 
@@ -109,7 +107,3 @@ main.work-grid { grid-row-gap: 60px; }
 .project-card.has-video.done .poster img { opacity: 0; }
 .project-card.has-video.done .poster-video { opacity: 0; }
 .project-card.has-video.done .blurb { opacity: 1; }
-
-@media (prefers-reduced-motion: reduce) {
-  .poster img, .poster-ph, .blurb { transition-duration: 0.01ms; }
-}
