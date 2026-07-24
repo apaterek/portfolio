@@ -18,8 +18,7 @@ main.hero {
   max-width: 1600px;
   aspect-ratio: 16 / 9;
   max-height: calc(100vh - 300px);
-  overflow: hidden;
-  border: var(--stroke) solid var(--ink);
+  overflow: hidden;               /* no border on media, per site-wide rule */
   background: var(--ink);          /* covers the frame while the video loads */
 }
 .video-frame video {

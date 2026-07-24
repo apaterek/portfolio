@@ -62,9 +62,8 @@ body.reveal {
   width: 100%;
   aspect-ratio: 16 / 9;
   max-height: 62vh;
-  border: var(--stroke) solid var(--ink);
-  background: var(--ink);
-  overflow: hidden;
+  background: var(--ink);          /* covers the frame while the video loads */
+  overflow: hidden;               /* no border on media, per site-wide rule */
 }
 .frame video {
   display: block;

@@ -16,10 +16,9 @@
   .site-header { opacity: 0; visibility: hidden; transition: opacity 0.5s ease; }
   .site-header.show { opacity: 1; visibility: visible; }
 
-  /* Word revealed centered OVER the looping water, one per click. Homepage-only
-     override: no outline stroke around the video (reveal.css's shared .frame
-     border stays intact for construction.html). */
-  .frame { position: relative; border: none; }
+  /* Word revealed centered OVER the looping water, one per click.
+     position: relative so the word can be absolutely centered on the video. */
+  .frame { position: relative; }
   .overword {
     position: absolute;
     inset: 0;
@@ -201,6 +200,21 @@
       apply();
       window.addEventListener('resize', apply);
       window.addEventListener('load', apply);
+    })();
+
+    // Keep the hero water video looping continuously. The loop attribute is set,
+    // but browsers can throttle muted autoplay or drop playback after a tab
+    // switch; this restarts it on end and whenever the tab becomes visible.
+    (function () {
+      var v = document.querySelector('.frame video');
+      if (!v) return;
+      v.loop = true;
+      function ensure() {
+        if (v.paused && !document.hidden) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      }
+      v.addEventListener('ended', function () { v.currentTime = 0; ensure(); });
+      document.addEventListener('visibilitychange', ensure);
+      ensure();
     })();
   </script>
 

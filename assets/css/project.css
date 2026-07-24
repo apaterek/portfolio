@@ -46,7 +46,7 @@ main.project {
   width: 100%;
   aspect-ratio: 16 / 9;
   margin: 44px 0;
-  border: var(--stroke) solid var(--ink);
+  background: var(--background-color);   /* no border on media, per site-wide rule */
   display: flex;
   align-items: center;
   justify-content: center;
