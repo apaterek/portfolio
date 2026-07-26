@@ -168,6 +168,12 @@ Current `media/video/web/`: `ksa-water-loop.mp4` + poster,
 lives git-ignored at `docs/cv/` — a published copy was placed at
 `assets/austin-paterek-cv.pdf` and is what About links to.
 
+**Uncommitted local change:** `.gitignore` has `writing/` added to the internal
+working-notes block (so `writing/PhD-Proposal.pdf` stops showing as untracked).
+This edit is **local and unstaged** (`M .gitignore`), not yet committed or
+pushed. `writing/` is a personal doc, unrelated to the site's `writing.html`
+page — usage to be decided in a follow-up session.
+
 ---
 
 ## 7. Deploy state
@@ -186,8 +192,10 @@ so iOS drops the play icon" (created `autoplay.js`, wired it site-wide, added
   hero; a dedicated Reel page is still open.
 - **Writing links** — swap real Medium URLs into `writing.html` as pieces
   publish (currently placeholder titles).
-- **Project page URLs** — `work/*.html` "Watch the series →" CTAs are `href="#"`
-  placeholders pending real links.
+- ✅ **Project page URLs** — done. hyper-history → youtu.be/F2ZdoSByqy0,
+  spread-the-happy → youtu.be/McOeZQRPPIU, off-the-plate → vimeo.com/335994237
+  ("Watch the sizzle →"). honda-backstage has **no CTA by design** (series no
+  longer hosted by the client).
 - **Project page second frames** — `hyper-history` and `spread-the-happy` have
   their first `.media-frame` wired to work-loop videos; the second `.media-frame`
   is still a "to be added" placeholder. honda-backstage and off-the-plate media
