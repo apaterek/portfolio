@@ -15,6 +15,8 @@ media/video/personal-archive/
 copy/
 docs/
 CLAUDE.md
+# ...but the olympics subsite ships its own CLAUDE.md as project documentation
+!olympics/CLAUDE.md
 
 # Local tooling config
 .claude/
