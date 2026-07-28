@@ -187,18 +187,42 @@ so iOS drops the play icon" (created `autoplay.js`, wired it site-wide, added
 
 ## 8. Remaining / open
 
-- **Home hero composite** — the vintage title-card composite over the water
-  backplate is still pending (build order §5). The water loop is live as the
-  hero; a dedicated Reel page is still open.
-- **Writing links** — swap real Medium URLs into `writing.html` as pieces
-  publish (currently placeholder titles).
-- ✅ **Project page URLs** — done. hyper-history → youtu.be/F2ZdoSByqy0,
-  spread-the-happy → youtu.be/McOeZQRPPIU, off-the-plate → vimeo.com/335994237
-  ("Watch the sizzle →"). honda-backstage has **no CTA by design** (series no
-  longer hosted by the client).
-- **Project page second frames** — `hyper-history` and `spread-the-happy` have
-  their first `.media-frame` wired to work-loop videos; the second `.media-frame`
-  is still a "to be added" placeholder. honda-backstage and off-the-plate media
-  frames pending.
+Reconciled to the current branch (post-`33538a0`, through the Writing-nav removal +
+Work logo-wall commit).
+
+**Done since the handoff was first written:**
+- ✅ **Project page URLs** — hyper-history → youtu.be/F2ZdoSByqy0, spread-the-happy
+  → youtu.be/McOeZQRPPIU, off-the-plate → vimeo.com/335994237 ("Watch the sizzle →").
+  honda-backstage has **no CTA by design** (series no longer hosted by the client).
+- ✅ **Project page second frames** — resolved by **removal** (`562a759`): the second
+  `.media-frame` placeholder was dropped from every project page (Off The Plate's
+  single frame kept). No second frames pending.
+- ✅ **Temporality writing page** — `temporality-seafaring.html` added + linked from
+  writing.html.
+- ✅ **Writing removed from nav site-wide** — nav is now HOME / ABOUT / WORK / CONTACT
+  (4 items; `base.css` divisor updated `/5`→`/4`). `writing.html` +
+  `temporality-seafaring.html` are **kept** (local + GitHub), reachable by direct URL
+  / the in-page "Back to writing" link, just unlinked from menus.
+- ✅ **Work logo wall** — `work.html` now shows a borderless "Amazing clients,
+  creators, and platforms I've worked with." grid of all `media/images/companies/`
+  logos below the project cards, capped to a poster's width (`--clients-w`).
+- ✅ **Home hero composite / Reel page** — dropped from scope (no longer a to-do).
+  The water loop stays as the live hero.
+
+**Still open:**
+- **Writing links** — `writing.html` still has placeholder titles; swap real Medium
+  URLs as pieces publish (page is delinked from nav but retained for later).
 - **Custom domain** — `ksa.cool` not yet pointed at Pages.
-- **Image rights** — confirm before publishing any client campaign art.
+- **Image rights** — confirm before publishing any client campaign art (Honda,
+  Ferrero, Google). Company logos on Work are third-party marks used to show past
+  clients; confirm that usage is acceptable too before going live.
+- ✅ **Logo-wall cleanup** — the 10 white-background logos (critical, food, history,
+  netflix, pokemon, t-group, uproxx, wb, youtube, ae-networks) had their white
+  removed and were re-saved as trimmed transparent **`.svg`** (raster embedded via
+  base64 data-URI + tight viewBox: no vector tracer on this machine, and tracing
+  multicolor wordmarks would degrade them). The 5 already-transparent logos were
+  trimmed in place to equalize sizing. **HBO Max and Vernon Films are intentionally
+  kept as colored tiles** (their backgrounds are brand color, not white). The old
+  raster originals for the converted logos were deleted.
+- **genAI image references** — `media/images/OTP/` is git-ignored, to be published
+  later.

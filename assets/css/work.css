@@ -107,3 +107,46 @@ main.work-grid { grid-row-gap: 60px; }
 .project-card.has-video.done .poster img { opacity: 0; }
 .project-card.has-video.done .poster-video { opacity: 0; }
 .project-card.has-video.done .blurb { opacity: 1; }
+
+/* ============================================================
+   CLIENTS — a uniform, borderless logo wall below the project
+   cards. Both the heading and the grid span the FULL card block
+   (left edge of the first card to the right edge of the last), via
+   .clients spanning grid-column 1 / -1. Logos stay ~their prior
+   size, so widening just fits more per row; rows are centered
+   (incl. any short last row) by wrapping flex with justify-center.
+   ============================================================ */
+.clients {
+  grid-column: 1 / -1;          /* = card-block width: the max-width constraint */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.clients-intro {
+  width: 100%;                  /* spans the full card block, centered */
+  text-align: center;
+  font-size: 34px;              /* matches contact.html .about-lead */
+  font-weight: 700;
+  line-height: 1.12em;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
+@media (max-width: 900px) { .clients-intro { font-size: 27px; } }
+
+.clients-grid {
+  width: 100%;                  /* spans the full card block */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;      /* center each row, including a short last row */
+  align-items: center;
+  gap: 14px 10px;
+}
+.clients-grid img {
+  width: 104px;                 /* fixed ~prior cell size: more per row as it widens */
+  aspect-ratio: 3 / 2;          /* identical cell for every logo */
+  object-fit: contain;          /* whole logo fits: no crop, no skew */
+  display: block;               /* no borders */
+  padding: 10px;                /* uniform breathing room, so trimmed marks and
+                                   the opaque tiles (Vernon/HBO) read as one size */
+}

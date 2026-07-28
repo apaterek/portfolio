@@ -13,9 +13,11 @@
 
   /* Type --------------------------------------------------- */
   --font-body: -apple-system, "Helvetica Neue", Arial, sans-serif;
-  --large:  61.05px; /* site title. Tuned so 2 lines exactly match the 5-item
-                        nav block height (nav ≈ 116px ÷ 1.9 lines-per-em).
-                        Re-tune if the nav item count changes. */
+  --large:  61.05px; /* site title. Tuned so 2 lines exactly match the 4-item
+                        nav block height (nav ≈ 116px ÷ 1.9 lines-per-em). The
+                        per-item line-height divisor in base.css tracks the item
+                        count, so this value holds; re-tune only if 2-line height
+                        must change. */
   --medium: 32px;
   --small:  16px;
 
