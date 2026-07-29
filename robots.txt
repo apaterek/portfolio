@@ -2,6 +2,11 @@
 User-agent: *
 Disallow: /
 
+# LinkedIn's link-preview crawler, allowed so shared/Featured links on
+# LinkedIn can render a title, description, and image.
+User-agent: LinkedInBot
+Allow: /
+
 # Named AI / data-scraping crawlers (explicit, in case they only match by name).
 User-agent: GPTBot
 Disallow: /
