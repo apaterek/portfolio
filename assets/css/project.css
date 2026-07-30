@@ -128,6 +128,42 @@ a.project-cta { border-bottom: var(--stroke) solid var(--ink); padding-bottom: 2
 .project-back:hover { opacity: 1; }
 
 /* ============================================================
+   WRITING SAMPLES — text-hyperlink lists for writing-samples.html
+   and the writing-samples/ project pages. Deliberately plain: no
+   cards, no thumbnails. One hero poster per page carries the image
+   weight; everything else is a link and a line of context.
+   ============================================================ */
+.sample-list {
+  margin-top: 8px;
+  padding-top: 26px;
+  border-top: var(--stroke) solid var(--ink);
+}
+.sample-list li {
+  max-width: 62ch;
+  margin-bottom: 26px;
+}
+.sample-list li:last-child { margin-bottom: 0; }
+
+.sample-link {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.35em;
+  border-bottom: var(--stroke) solid var(--ink);
+  padding-bottom: 2px;
+  transition: opacity 0.15s ease;
+}
+.sample-link:hover { opacity: 0.6; }
+
+/* One line of context under each link */
+.sample-note {
+  display: block;
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.55em;
+  opacity: 0.75;
+}
+
+/* ============================================================
    ABOUT — reuses the content styles above (eyebrow, body, cta,
    media frame) plus these About-specific pieces for about.html.
    ============================================================ */
