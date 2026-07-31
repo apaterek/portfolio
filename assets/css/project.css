@@ -128,6 +128,47 @@ a.project-cta { border-bottom: var(--stroke) solid var(--ink); padding-bottom: 2
 .project-back:hover { opacity: 1; }
 
 /* ============================================================
+   LONG-FORM MEMO — section headings, numbered recommendations,
+   and the byline under the title. Used by the creative-tech memo;
+   reusable by any long read that needs internal structure.
+   base.css zeroes list padding and kills ul markers, so ol has to
+   restore its own indent and numerals here.
+   ============================================================ */
+.project-byline {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  /* Bottom margin does the separating: .project-body h3:first-child zeroes its
+     own top margin, so without this the opening heading crowds the byline. */
+  margin: 18px 0 38px;
+}
+
+.project-body h3 {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.25em;
+  letter-spacing: -0.01em;
+  max-width: 62ch;
+  margin: 46px 0 16px;
+}
+.project-body h3:first-child { margin-top: 0; }
+
+.project-body ol {
+  list-style: decimal;
+  padding-left: 1.5em;
+  max-width: 62ch;
+  margin-bottom: 20px;
+}
+.project-body ol li {
+  font-size: 17px;
+  line-height: 1.6em;
+  margin-bottom: 18px;
+  padding-left: 0.3em;
+}
+.project-body ol li:last-child { margin-bottom: 0; }
+
+/* ============================================================
    WRITING SAMPLES — text-hyperlink lists for writing-samples.html
    and the writing-samples/ project pages. Deliberately plain: no
    cards, no thumbnails. One hero poster per page carries the image
@@ -215,6 +256,21 @@ a.project-cta { border-bottom: var(--stroke) solid var(--ink); padding-bottom: 2
   transition: opacity 0.15s ease;
 }
 .contact-link:hover { opacity: 0.6; }
+
+/* ============================================================
+   TK — scaffolding marker. Deliberately outside the palette (it
+   is meant to be jarring) so unfinished copy cannot ship
+   unnoticed. Currently UNUSED: every .tk has been replaced with
+   real copy. Kept for the next scaffolded page (the Postcard
+   InDesign builds are still to come). Wrap placeholder text in
+   <span class="tk">, and grep 'class="tk"' before publishing.
+   ============================================================ */
+.tk {
+  background: #ffd84d;
+  box-shadow: 0 0 0 3px #ffd84d;
+  font-style: italic;
+}
+.tk::before { content: "TK "; font-weight: 700; font-style: normal; }
 
 /* ---- Responsive -------------------------------------------- */
 @media (max-width: 900px) {

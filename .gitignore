@@ -20,5 +20,13 @@ docs/user-instructions/   # file-prep guidance only (already covered by docs/, k
 writing/
 CLAUDE.md
 
+# Postcard working files (~46MB): InDesign/Illustrator sources, framework drafts,
+# third-party licensed data (NRC-VAD Lexicon), and research datasets. Same pattern
+# as the CV — keep the source local, publish only specific exports into assets/ or
+# media/images/ when a page is ready for them.
+# LEADING SLASH IS LOAD-BEARING: core.ignorecase=true on macOS, so an unanchored
+# "Postcard/" also swallows media/images/postcard/ and the published exports vanish.
+/Postcard/
+
 # Local tooling config
 .claude/
