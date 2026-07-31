@@ -280,3 +280,66 @@ a.project-cta { border-bottom: var(--stroke) solid var(--ink); padding-bottom: 2
   .project-subhead { font-size: 21px; }
   .about-lead { font-size: 27px; }
 }
+
+/* ============================================================
+   PRINT — content pages only. Deliberately lives here and not in
+   base.css: only pages that link project.css get it, so the home
+   reveal and the work grid are untouched.
+
+   On screen the header is fixed and main.project carries 200px of
+   top padding to clear it. On paper a fixed header either repeats
+   on every sheet or collides with that padding, so unpin it, turn
+   the wordmark into a one-line letterhead, and drop the padding.
+   Units are pt here because the output is paper, not pixels.
+   ============================================================ */
+@media print {
+  @page { margin: 18mm 16mm 20mm; }
+
+  body { background: #fff; color: #000; }
+
+  header.container {
+    position: static;
+    display: block;
+    padding: 0 0 14pt;
+    margin-bottom: 26pt;
+    border-bottom: 1pt solid #000;
+  }
+  header.container nav { display: none; }
+
+  /* Two stacked words become one letterhead line. The spans are on
+     separate source lines, so collapsed inline whitespace already
+     supplies the word space: both margins must go to zero or the
+     gap doubles. */
+  .site-title { font-size: 19pt; line-height: 1.1em; }
+  .site-title span { display: inline; }
+  .site-title .indent { margin-left: 0; }
+
+  main.project { max-width: none; width: 100%; padding: 0; margin: 0; }
+
+  /* Screen-only affordances have no meaning on paper. .print-hide is
+     opt-in, for anything that would be absurd inside its own PDF (the
+     memo's "Download as PDF" link being the case that prompted it).
+     Other pages keep their CTAs in print. */
+  .project-back, .tk, .print-hide { display: none; }
+
+  .project-eyebrow { font-size: 8pt; margin-bottom: 12pt; }
+  .project-title { font-size: 21pt; }
+  .project-title .sub { font-size: 11.5pt; margin-top: 8pt; }
+  .project-byline { font-size: 8pt; opacity: 1; margin: 12pt 0 24pt; }
+  .project-subhead { font-size: 13pt; max-width: none; }
+  .about-lead { font-size: 16pt; max-width: 26ch; }
+  .project-body p,
+  .project-body ol li { font-size: 10.5pt; line-height: 1.5em; max-width: none; }
+  .project-body h3 { font-size: 12pt; margin: 20pt 0 8pt; max-width: none; }
+  .project-role,
+  .project-scale { font-size: 9.5pt; max-width: none; }
+
+  /* Pagination. orphans/widows rather than break-inside on <p>:
+     these paragraphs run long, and break-inside would either be
+     ignored or open large gaps. */
+  .project-body p { orphans: 3; widows: 3; }
+  .project-body h3 { break-after: avoid; page-break-after: avoid; }
+  .project-body ol li,
+  .media-frame,
+  .sample-list li { break-inside: avoid; page-break-inside: avoid; }
+}
