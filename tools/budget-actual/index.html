@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Budget Actual</title>
+<meta name="description" content="An adjustable budget versus actual for film and experiential production and post.">
+<meta name="theme-color" content="#111111">
+<meta name="color-scheme" content="light dark">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Actuals">
+<meta name="robots" content="noindex, nofollow">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header id="topbar"></header>
+
+<main id="view"></main>
+
+<button id="fab" aria-label="Add a cost" hidden>+</button>
+
+<nav id="tabs" aria-label="Sections">
+  <button data-tab="summary" class="on" aria-current="page">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m5 10V5m5 14v-7m5 7V8"/></svg>
+    <span>Summary</span>
+  </button>
+  <button data-tab="budget">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+    <span>Budget</span>
+  </button>
+  <button data-tab="actuals">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6zM14 3v5h5M9 13h6M9 17h4"/></svg>
+    <span>Actuals</span>
+  </button>
+  <button data-tab="job">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16v12H4zM9 8V5h6v3"/></svg>
+    <span>Job</span>
+  </button>
+</nav>
+
+<div id="sheet" hidden></div>
+
+<script src="templates.js"></script>
+<script src="sample.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
