@@ -20,8 +20,6 @@
 <meta property="og:image:alt" content="A water surface in motion, the loop that opens the site">
 <meta name="twitter:card" content="summary_large_image">
 
-<meta name="robots" content="noindex, nofollow">
-
 <link rel="icon" href="assets/icons/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="assets/icons/favicon-32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="assets/icons/favicon-16.png" sizes="16x16">
@@ -34,9 +32,12 @@
 </head>
 <body>
 
-  <!-- Unlinked page: reachable by direct URL only, sent with applications.
-       Nav stays the fixed 4 items so the wordmark/nav height lock in
-       base.css holds; no item is active here. -->
+  <!-- Linked from work.html's practice band, so this hub is a normal public
+       page (no noindex). Its two children, creative-tech/postcard.html and
+       creative-tech/generative-tools-memo.html, deliberately KEEP their
+       noindex and stay one click deeper. Nav is still the fixed 4 items, so
+       the wordmark/nav height lock in base.css holds; Work is marked active
+       because this page hangs off Work. -->
   <header class="container">
     <h1 class="site-title">
       <span>AUSTIN</span>
@@ -46,7 +47,7 @@
       <ul>
         <li data-text="Home"><a href="index.html">Home</a></li>
         <li data-text="About"><a href="about.html">About</a></li>
-        <li data-text="Work"><a href="work.html">Work</a></li>
+        <li class="active" data-text="Work"><a href="work.html">Work</a></li>
         <li data-text="Contact"><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
@@ -97,6 +98,10 @@
         <span class="sample-note">A memo for producers weighing generative tooling on a show: where it earns its place, where it costs you, and what it owes the people whose work it touches.</span>
       </li>
     </ul>
+
+    <!-- Closes the loop with work.html's .practice band, which is how readers
+         arrive here. Same .project-back treatment as the work/ project pages. -->
+    <a class="project-back" href="work.html">← Back to work</a>
 
   </main>
 

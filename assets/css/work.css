@@ -8,6 +8,20 @@
 
 main.work-grid { grid-row-gap: 60px; }
 
+/* Four cards read as 1, 2, or 4 across, never 3. At 3 columns the fourth
+   card is stranded alone on row two and opens a hole in the middle of the
+   page. Overrides base.css's 3-up step here rather than in base itself,
+   because writing.html shares main.container and should keep its own grid.
+   Doubled class beats base's single-class rule regardless of load order.
+   max-width grows with the extra column so the cards do not shrink to
+   compensate (4 x 360 + gaps + gutters would want ~1650px for full size). */
+@media (min-width: 1400px) {
+  main.container.work-grid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1440px;
+  }
+}
+
 .project-card {
   display: block;
   width: 100%;
@@ -109,6 +123,41 @@ main.work-grid { grid-row-gap: 60px; }
 .project-card.has-video.done .blurb { opacity: 1; }
 
 /* ============================================================
+   PRACTICE — the second full-width band, sitting between the
+   project cards and the logo wall. Deliberately NOT a fifth
+   .project-card: the cards are client campaigns with a poster,
+   a credit, and a result, and a card here would invite creative
+   technology to be judged as a campaign it is not. Placed after
+   the evidence and before the credentials, which is where a
+   reader who just scanned four projects asks what comes next.
+   Heading type is shared with .clients-intro above.
+   ============================================================ */
+.practice {
+  grid-column: 1 / -1;          /* = card-block width, same as .clients */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.practice-body {
+  max-width: 54ch;
+  font-size: 17px;
+  line-height: 1.6em;
+  margin-bottom: 28px;
+}
+.practice-link {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: var(--stroke) solid var(--ink);
+  padding-bottom: 2px;
+  transition: opacity 0.15s ease;
+}
+.practice-link:hover { opacity: 0.6; }
+
+/* ============================================================
    CLIENTS — a uniform, borderless logo wall below the project
    cards. Both the heading and the grid span the FULL card block
    (left edge of the first card to the right edge of the last), via
@@ -123,7 +172,10 @@ main.work-grid { grid-row-gap: 60px; }
   flex-direction: column;
   align-items: center;
 }
-.clients-intro {
+/* Shared by both full-width bands (clients + practice). One declaration,
+   two selectors, so the two headings cannot drift apart. */
+.clients-intro,
+.practice-lead {
   width: 100%;                  /* spans the full card block, centered */
   text-align: center;
   font-size: 34px;              /* matches contact.html .about-lead */
@@ -132,7 +184,10 @@ main.work-grid { grid-row-gap: 60px; }
   letter-spacing: -0.02em;
   margin-bottom: 32px;
 }
-@media (max-width: 900px) { .clients-intro { font-size: 27px; } }
+@media (max-width: 900px) {
+  .clients-intro,
+  .practice-lead { font-size: 27px; }
+}
 
 .clients-grid {
   width: 100%;                  /* spans the full card block */

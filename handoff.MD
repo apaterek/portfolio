@@ -2,7 +2,10 @@
 
 Austin Paterek's personal portfolio. Framework-free static site (plain HTML/CSS/JS,
 no build step), deployed on GitHub Pages: `apaterek/portfolio` →
-apaterek.github.io/portfolio, with `ksa.cool` planned as the custom domain.
+apaterek.github.io/portfolio. A `CNAME` file now points the custom domain at
+`www.austinpaterek.com` (added directly on GitHub, not yet confirmed live via DNS).
+CLAUDE.md's planned `ksa.cool` domain has been superseded by this — flag if that's
+not intentional.
 
 > The authoritative design-system and copy rules live in [CLAUDE.md](CLAUDE.md).
 > This file is the working-state snapshot: what's built, what's decided, what's left.
@@ -58,13 +61,28 @@ index.html          Home — word-over-video reveal (CREATIVE/STRATEGY/CONTENT/
                     EXPERIENCE), then header + instagram gallery. Session-skip.
 index-alt.html      alternate Home — plain looping water hero (home.css)
 construction.html   KSA under-construction teaser (shares reveal system)
-work.html           Work grid — 4 poster cards, hover: poster → 1s clip → blurb
+work.html           Work grid — 4 poster cards, hover: poster → 1s clip → blurb,
+                    plus a borderless clients/creators/platforms logo wall
 work/               hyper-history · spread-the-happy · honda-backstage · off-the-plate
-about.html          bio, portrait placeholder, CV link, focus + location
+                    — each page has exactly 1 hero video (all 4 wired, see §4)
+about.html          bio (rebuilt copy, anthropology-led framing), real portrait
+                    (media/images/portrait.jpeg, not a placeholder), CV link,
+                    focus + location
 contact.html        mailto + LinkedIn (no footer, no form)
-writing.html        Writing links (placeholder titles → real Medium URLs later)
-robots.txt          blocks all crawlers + named AI scrapers
+writing.html        Writing links (placeholder titles → real Medium URLs later);
+                    unlinked from nav, reachable by direct URL
+temporality-seafaring.html  standalone long-form writing page, linked from
+                    writing.html ("Back to writing")
+robots.txt          blocks all crawlers + named AI scrapers, with an explicit
+                    Allow carve-out for LinkedInBot (link-preview/Post Inspector)
 ```
+
+### Icons
+`assets/icons/` — `favicon.ico` (16/24/32/48/64), `favicon-16.png`, `favicon-32.png`,
+`apple-touch-icon.png` (180px). Generated from a face-focused crop of
+`media/images/instagram/ig-20130405-17842851268039811.jpg` (a childhood photo already
+used in the Home Instagram gallery). Linked via `<link rel="icon">` /
+`<link rel="apple-touch-icon">` in every page's `<head>`.
 
 ---
 
@@ -84,9 +102,9 @@ robots.txt          blocks all crawlers + named AI scrapers
 - **Instagram gallery** (below the water loop) — 13 images, varied heights via a
   per-image `--ihf` (fraction of the live video height, so none is ever taller
   than the video). JS measures the frame to set `--video-h`, and applies the
-  writing.html arrhythmic left/right nudge (`--sx`: alternating direction,
-  random magnitude scaled to video width) so edges break past the video. No
-  strokes. `ig-20130405…` is intentionally last.
+  arrhythmic left/right nudge (`--sx`: alternating direction, random magnitude
+  scaled to video width) so edges break past the video. No strokes.
+  `ig-20130405…` is intentionally last (and is now also the favicon source).
 
 - **Work cards** (`work.html`) — poster image + project name below. On
   hover the poster hard-cuts to a 1-second transition clip, then hard-cuts to
@@ -97,14 +115,19 @@ robots.txt          blocks all crawlers + named AI scrapers
     Tap navigates; hold triggers the clip/blurb and blocks the click. Same
     bridge powers the writing-link fill/invert via `.holding`.
 
+- **Project-page hero videos** — each `work/*.html` page has exactly one
+  `.media-frame` with a looping, muted, no-audio hero video (see §4 for sources).
+  Honda Backstage's went through two re-sources this session (letterbox fix, then
+  an in/out-trim correction) before landing on its current 18.4s full-bleed clip.
+
 - **Autoplay** (`autoplay.js`) — iOS/Safari won't muted-autoplay (and shows a
   play icon) unless the video is muted as a JS *property*, not just the HTML
   attribute. The script force-sets `v.muted = true` then `play()` for every
   `<video autoplay>`, with a first-gesture fallback, loop restart, and
   visibility resume. Selects `video[autoplay]` only, so the hover-triggered work
   transition clips (which JS starts on hold, never autoplay) are excluded and
-  untouched. Loaded on: index, index-alt, construction, work/hyper-history,
-  work/spread-the-happy.
+  untouched. Loaded on every page with an autoplay video, including all four
+  `work/*.html` pages.
 
 - **Borderless media** — all frame strokes removed site-wide (`.frame`,
   `.video-frame`, `.media-frame`, `.poster`). Backgrounds/overflow kept.
@@ -114,7 +137,9 @@ robots.txt          blocks all crawlers + named AI scrapers
 - **robots.txt** — `Disallow: /` for all agents, plus explicit blocks for
   GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-Web, anthropic-ai,
   CCBot, Google-Extended, PerplexityBot, Amazonbot, Bytespider,
-  Applebot-Extended, meta-externalagent.
+  Applebot-Extended, meta-externalagent. `LinkedInBot` is explicitly **allowed**
+  (`Allow: /`) so LinkedIn's Post Inspector can render a preview card for the
+  site when shared/Featured on a profile.
 
 ---
 
@@ -138,10 +163,13 @@ python3 -c "import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())"
 - Transition clips are montage-style: extract N frames per segment, assemble at
   24fps. Nutella = 8 segments × 3 frames = 1s.
 
-Current `media/video/web/`: `ksa-water-loop.mp4` + poster,
-`nutella-transition.mp4` (1s), `honda-1-transition.mp4`, `google-1-transition.mp4`,
-`otp-1-transition.mp4` (all 1s 720p, no audio), `google-work-loop.mp4`,
-`nutella-work-loop.mp4`.
+Current `media/video/web/` (all 720p24, no audio unless noted):
+`ksa-water-loop.mp4` + poster, `google-work-loop.mp4`, `nutella-work-loop.mp4`,
+`honda-work-loop.mp4` + poster (18.4s — re-sourced twice this session: first for
+letterboxing, then for an incorrect Premiere trim; current source was
+`honda-work-loop-3.mp4`), `otp-work-loop.mp4` + poster, and the four 1s hover
+transition clips (`nutella-transition`, `honda-1-transition`,
+`google-1-transition`, `otp-1-transition`).
 
 ---
 
@@ -158,71 +186,60 @@ Current `media/video/web/`: `ksa-water-loop.mp4` + poster,
 - Confirm image usage rights before publishing client campaign art (Honda,
   Ferrero, Google retain rights) via the warm agency relationships (BPS,
   1stAveMachine, Uproxx).
+- About page body copy was fully rewritten this session (anthropology-led
+  framing, four paragraphs) — verbatim from Austin with only a comma-splice
+  fixed to a semicolon. This is now the live source of truth for About; no
+  further edits pending unless requested.
 
 ---
 
 ## 6. Git-ignored (internal, not published)
 
 `docs/`, `copy/`, `CLAUDE.md`, `.claude/`, `media/video/source/`,
-`media/video/personal-archive/`. Never commit large raw source videos. The CV
-lives git-ignored at `docs/cv/` — a published copy was placed at
+`media/video/personal-archive/`, `media/images/OTP/`. Never commit large raw
+source videos. The CV lives git-ignored at `docs/cv/` — a published copy sits at
 `assets/austin-paterek-cv.pdf` and is what About links to.
 
-**Uncommitted local change:** `.gitignore` has `writing/` added to the internal
-working-notes block (so `writing/PhD-Proposal.pdf` stops showing as untracked).
-This edit is **local and unstaged** (`M .gitignore`), not yet committed or
-pushed. `writing/` is a personal doc, unrelated to the site's `writing.html`
-page — usage to be decided in a follow-up session.
+Working tree is clean and fully pushed as of this handoff (no outstanding local
+edits).
 
 ---
 
 ## 7. Deploy state
 
-Latest relevant commit: `3536b93` — "Fix mobile autoplay: force muted property
-so iOS drops the play icon" (created `autoplay.js`, wired it site-wide, added
-`webkit-playsinline` to the hero, removed the index inline loop guard). Pushed to
-`apaterek/portfolio` main.
+Latest commit: `39f6b5a` — "Add site favicon from an Instagram childhood photo".
+Pushed to `apaterek/portfolio` main. Recent history behind it: favicon rollout,
+`robots.txt` LinkedInBot allowance, a `CNAME` → `www.austinpaterek.com` (added
+directly on GitHub, outside this working session), the Honda hero video's trim
+correction and earlier letterbox fix, and the Honda/Off The Plate hero-video +
+About-copy commit.
 
 ---
 
 ## 8. Remaining / open
 
-Reconciled to the current branch (post-`33538a0`, through the Writing-nav removal +
-Work logo-wall commit).
-
-**Done since the handoff was first written:**
-- ✅ **Project page URLs** — hyper-history → youtu.be/F2ZdoSByqy0, spread-the-happy
-  → youtu.be/McOeZQRPPIU, off-the-plate → vimeo.com/335994237 ("Watch the sizzle →").
-  honda-backstage has **no CTA by design** (series no longer hosted by the client).
-- ✅ **Project page second frames** — resolved by **removal** (`562a759`): the second
-  `.media-frame` placeholder was dropped from every project page (Off The Plate's
-  single frame kept). No second frames pending.
-- ✅ **Temporality writing page** — `temporality-seafaring.html` added + linked from
-  writing.html.
-- ✅ **Writing removed from nav site-wide** — nav is now HOME / ABOUT / WORK / CONTACT
-  (4 items; `base.css` divisor updated `/5`→`/4`). `writing.html` +
-  `temporality-seafaring.html` are **kept** (local + GitHub), reachable by direct URL
-  / the in-page "Back to writing" link, just unlinked from menus.
-- ✅ **Work logo wall** — `work.html` now shows a borderless "Amazing clients,
-  creators, and platforms I've worked with." grid of all `media/images/companies/`
-  logos below the project cards, capped to a poster's width (`--clients-w`).
-- ✅ **Home hero composite / Reel page** — dropped from scope (no longer a to-do).
-  The water loop stays as the live hero.
+**Done since the handoff was last written:**
+- ✅ **About body copy rewrite** — new four-paragraph bio, anthropology-led framing.
+- ✅ **Honda Backstage + Off The Plate hero videos** — each project page now has
+  exactly one autoplay/muted/loop hero video; all remaining placeholder frames
+  removed site-wide (every `work/*.html` page has exactly 1 `.media-frame`).
+- ✅ **Honda hero video letterboxing** — re-sourced from a corrected export.
+- ✅ **Honda hero video trim correction** — re-sourced again after an incorrect
+  Premiere in/out point produced a 2.7s loop; now 18.4s, correctly framed.
+- ✅ **robots.txt LinkedInBot allowance** — added so LinkedIn's Post Inspector can
+  generate a preview card for the site (Featured-section use case).
+- ✅ **Site favicon** — generated from an Instagram childhood photo, wired into
+  every page.
 
 **Still open:**
 - **Writing links** — `writing.html` still has placeholder titles; swap real Medium
   URLs as pieces publish (page is delinked from nav but retained for later).
-- **Custom domain** — `ksa.cool` not yet pointed at Pages.
+- **Custom domain** — a `CNAME` now points at `www.austinpaterek.com` (added
+  outside this session, superseding the CLAUDE.md-documented `ksa.cool` plan).
+  Confirm DNS is actually pointed and the domain resolves before treating this
+  as done; update CLAUDE.md once confirmed.
 - **Image rights** — confirm before publishing any client campaign art (Honda,
   Ferrero, Google). Company logos on Work are third-party marks used to show past
   clients; confirm that usage is acceptable too before going live.
-- ✅ **Logo-wall cleanup** — the 10 white-background logos (critical, food, history,
-  netflix, pokemon, t-group, uproxx, wb, youtube, ae-networks) had their white
-  removed and were re-saved as trimmed transparent **`.svg`** (raster embedded via
-  base64 data-URI + tight viewBox: no vector tracer on this machine, and tracing
-  multicolor wordmarks would degrade them). The 5 already-transparent logos were
-  trimmed in place to equalize sizing. **HBO Max and Vernon Films are intentionally
-  kept as colored tiles** (their backgrounds are brand color, not white). The old
-  raster originals for the converted logos were deleted.
 - **genAI image references** — `media/images/OTP/` is git-ignored, to be published
   later.
