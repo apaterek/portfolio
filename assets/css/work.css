@@ -122,6 +122,42 @@ main.work-grid { grid-row-gap: 60px; }
 .project-card.has-video.done .poster-video { opacity: 0; }
 .project-card.has-video.done .blurb { opacity: 1; }
 
+/* Flash card (pitch-decks.html): a still-image stand-in for the video
+   card above, for projects that only exist as PDF decks. JS swaps
+   .poster-flash's src through a handful of deck pages in hard cuts
+   (assets/js/flash-cards.js), same "playing -> done" sequence. */
+.poster-flash {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  display: block;
+}
+.project-card.has-flash.playing .poster-ph { opacity: 0; }
+.project-card.has-flash.playing .poster-flash { opacity: 1; }
+.project-card.has-flash.done .poster-ph { opacity: 0; }
+.project-card.has-flash.done .poster img { opacity: 0; }
+.project-card.has-flash.done .poster-flash { opacity: 0; }
+.project-card.has-flash.done .blurb { opacity: 1; }
+
+/* ============================================================
+   PITCH INTRO — the lead statement above the cards on
+   pitch-decks.html. Same full-width band shape as .practice/.clients
+   above; reuses their heading/body type (.practice-lead/-body) so
+   the three bands read as one family instead of drifting apart.
+   ============================================================ */
+.pitch-intro {
+  grid-column: 1 / -1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.pitch-intro .practice-body { margin-bottom: 0; max-width: 60ch; }
+
 /* ============================================================
    PRACTICE — the second full-width band, sitting between the
    project cards and the logo wall. Deliberately NOT a fifth

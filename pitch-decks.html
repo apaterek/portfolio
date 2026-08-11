@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pitch Decks · Austin Paterek</title>
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="icon" href="assets/icons/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="assets/icons/favicon-32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="assets/icons/favicon-16.png" sizes="16x16">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+
+<!-- Shared design system: tokens + header/nav (base) + work-grid cards.
+     Unlinked page: reachable by direct URL only, shared with specific
+     industry contacts. Not in the nav; no item gets .active below. -->
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/work.css">
+<script src="assets/js/touch-hold.js" defer></script>
+<script src="assets/js/flash-cards.js" defer></script>
+</head>
+<body>
+
+  <header class="container">
+    <h1 class="site-title">
+      <span>AUSTIN</span>
+      <span class="indent">PATEREK</span>
+    </h1>
+    <nav>
+      <ul>
+        <li data-text="Home"><a href="index.html">Home</a></li>
+        <li data-text="About"><a href="about.html">About</a></li>
+        <li data-text="Work"><a href="work.html">Work</a></li>
+        <li data-text="Contact"><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container work-grid">
+
+    <section class="pitch-intro">
+      <p class="practice-lead">A sample of pitch decks, shared for review.</p>
+      <p class="practice-body">This is a sample of my work in copywriting, format and property development strategy, and presentation design. All four decks below, the concepts, the writing, and the decks themselves, are my own work.</p>
+    </section>
+
+    <!-- Each card: a deck's title page + hover flash through a few of its
+         pages, resolving into a blurb (see .has-flash in work.css and
+         assets/js/flash-cards.js). Same poster/blurb model as work.html,
+         with a still-image flash standing in for the video clip. -->
+
+    <a class="project-card has-flash" href="pitch-decks/off-the-plate.html"
+       data-frames='["media/images/pitch-decks/otp-flash-1.jpg","media/images/pitch-decks/otp-flash-2.jpg","media/images/pitch-decks/otp-flash-3.jpg"]'>
+      <div class="poster">
+        <img src="media/images/pitch-decks/otp-hero.jpg" alt="Off The Plate deck title page">
+        <img class="poster-flash" alt="" aria-hidden="true">
+        <span class="blurb">A travel series pitch built around Major League ballparks: format, cast, and season map for a major streamer. Co-creator, writer.</span>
+      </div>
+      <div class="card-title">Off The Plate</div>
+    </a>
+
+    <a class="project-card has-flash" href="pitch-decks/illumineers.html"
+       data-frames='["media/images/pitch-decks/illumineers-flash-1.jpg","media/images/pitch-decks/illumineers-flash-2.jpg","media/images/pitch-decks/illumineers-flash-3.jpg"]'>
+      <div class="poster">
+        <img src="media/images/pitch-decks/illumineers-hero.jpg" alt="The Illumineers deck title page">
+        <img class="poster-flash" alt="" aria-hidden="true">
+        <span class="blurb">A lifestyle format pairing Disney's Lorcana trading card game with the history of Disney animation. Writer, format development.</span>
+      </div>
+      <div class="card-title">Illumineers</div>
+    </a>
+
+    <a class="project-card has-flash" href="pitch-decks/nonna-food.html"
+       data-frames='["media/images/pitch-decks/nonna-flash-1.jpg","media/images/pitch-decks/nonna-flash-2.jpg","media/images/pitch-decks/nonna-flash-3.jpg"]'>
+      <div class="poster">
+        <img src="media/images/pitch-decks/nonna-hero.jpg" alt="Nonna Food deck title page">
+        <img class="poster-flash" alt="" aria-hidden="true">
+        <span class="blurb">A competence-porn cooking format: one chef, a new grandmother every episode. Writer, presentation design.</span>
+      </div>
+      <div class="card-title">Nonna Food</div>
+    </a>
+
+    <a class="project-card has-flash" href="pitch-decks/tryouts.html"
+       data-frames='["media/images/pitch-decks/tryouts-flash-1.jpg","media/images/pitch-decks/tryouts-flash-2.jpg","media/images/pitch-decks/tryouts-flash-3.jpg"]'>
+      <div class="poster">
+        <img src="media/images/pitch-decks/tryouts-hero.jpg" alt="Tryouts deck title page">
+        <img class="poster-flash" alt="" aria-hidden="true">
+        <span class="blurb">A Top Chef-style competition to find the next generation of sports broadcasters. Writer, format development.</span>
+      </div>
+      <div class="card-title">Tryouts</div>
+    </a>
+
+  </main>
+
+</body>
+</html>
