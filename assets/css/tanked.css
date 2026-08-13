@@ -1,0 +1,166 @@
+/* ============================================================
+   TANKED — interactive demo panels (creative-tech/tanked.html only).
+   Data tables, team-picker select, and offer-grade cards. Built from
+   the shared tokens (--ink, --background-color, --stroke, --page-gutter)
+   rather than introducing new colors or fonts, matching the golden
+   rule in CLAUDE.md. Loaded after project.css, on this page only.
+   ============================================================ */
+
+.tanked-demo {
+  margin-top: 48px;
+  padding-top: 26px;
+  border-top: var(--stroke) solid var(--ink);
+}
+
+.tanked-panel { margin-bottom: 56px; }
+.tanked-panel:last-child { margin-bottom: 0; }
+
+.tanked-panel h4 {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.tanked-panel-note {
+  font-size: 14px;
+  line-height: 1.5em;
+  opacity: 0.65;
+  margin-bottom: 18px;
+  max-width: 62ch;
+}
+
+/* ---- Team-picker select ------------------------------------ */
+.tanked-select {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 8px 12px;
+  border: var(--stroke) solid var(--ink);
+  background: var(--background-color);
+  color: var(--ink);
+  margin-bottom: 18px;
+  cursor: pointer;
+}
+
+/* ---- Data tables --------------------------------------------
+   No table styling exists elsewhere in the system (base.css's
+   universal * { margin:0; padding:0 } reset strips defaults), so
+   this is a new component built to the same visual language as
+   .sample-list / .about-meta: solid --ink dividers, uppercase
+   small labels, no color beyond ink/background. -------------- */
+.tanked-table-wrap {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.tanked-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.tanked-table th,
+.tanked-table td {
+  text-align: left;
+  padding: 9px 16px 9px 0;
+  white-space: nowrap;
+}
+
+.tanked-table th {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  border-bottom: var(--stroke) solid var(--ink);
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.15s ease;
+}
+.tanked-table th:hover { opacity: 1; }
+.tanked-table th.sorted { opacity: 1; }
+.tanked-table th.sorted::after { content: " \2193"; }
+.tanked-table th.sorted.asc::after { content: " \2191"; }
+
+.tanked-table tbody tr { border-bottom: 1px solid var(--ink); opacity: 0.85; }
+.tanked-table tbody tr:hover { opacity: 1; }
+.tanked-table tbody tr:last-child { border-bottom: none; }
+
+.tanked-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.tanked-table td.neg { opacity: 0.55; }
+
+/* ---- Offer-grade cards --------------------------------------
+   Grade conveyed by the letter itself, not by color: the site's
+   token palette is deliberately monochrome (ink/background only). */
+.tanked-offer-cards {
+  display: flex;
+  flex-direction: column;
+}
+
+.tanked-offer-card {
+  display: flex;
+  gap: 20px;
+  padding: 20px 0;
+  border-top: 1px solid var(--ink);
+}
+.tanked-offer-card:first-child { border-top: none; padding-top: 0; }
+
+.tanked-offer-grade {
+  flex: 0 0 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  border: var(--stroke) solid var(--ink);
+}
+
+.tanked-offer-body { flex: 1; min-width: 0; }
+
+.tanked-offer-label {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4em;
+  margin-bottom: 6px;
+}
+
+.tanked-offer-meta {
+  font-size: 13px;
+  line-height: 1.5em;
+  opacity: 0.65;
+}
+
+/* ---- Engineering-note stat callout ---------------------------- */
+.tanked-stat-row {
+  display: flex;
+  gap: 32px;
+  margin: 20px 0 4px;
+}
+.tanked-stat {
+  flex: 1;
+}
+.tanked-stat .label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin-bottom: 6px;
+}
+.tanked-stat .value {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ---- Responsive ------------------------------------------------ */
+@media (max-width: 900px) {
+  .tanked-table { font-size: 13px; }
+  .tanked-table th, .tanked-table td { padding: 8px 12px 8px 0; }
+  .tanked-offer-card { gap: 14px; }
+  .tanked-stat-row { gap: 20px; }
+  .tanked-stat .value { font-size: 21px; }
+}

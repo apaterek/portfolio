@@ -1,0 +1,2708 @@
+{
+  "generated_note": "Anonymized snapshot from a live run: team labels genericized, real MLB player data kept.",
+  "league_format": "10-team, NL-only, keeper auction rotisserie, 5x5 with OBP in place of AVG",
+  "valuations": [
+    {
+      "name": "Juan Soto",
+      "positions": [
+        "RF",
+        "OF",
+        "UTIL",
+        "DH",
+        "LF"
+      ],
+      "sgp": 13.3,
+      "dollars": 44.8
+    },
+    {
+      "name": "Tarik Skubal",
+      "positions": [
+        "P",
+        "SP"
+      ],
+      "sgp": 14.3,
+      "dollars": 40.7
+    },
+    {
+      "name": "Paul Skenes",
+      "positions": [
+        "P",
+        "SP"
+      ],
+      "sgp": 12.5,
+      "dollars": 34.8
+    },
+    {
+      "name": "Kyle Schwarber",
+      "positions": [
+        "DH",
+        "UTIL"
+      ],
+      "sgp": 10.6,
+      "dollars": 34.0
+    },
+    {
+      "name": "Ronald Acuna Jr.",
+      "positions": [
+        "RF",
+        "OF",
+        "UTIL"
+      ],
+      "sgp": 10.5,
+      "dollars": 33.5
+    },
+    {
+      "name": "Elly De La Cruz",
+      "positions": [
+        "SS",
+        "2B/SS",
+        "IF",
+        "UTIL"
+      ],
+      "sgp": 10.1,
+      "dollars": 31.7
+    },
+    {
+      "name": "Kyle Tucker",
+      "positions": [
+        "RF",
+        "OF",
+        "UTIL"
+      ],
+      "sgp": 10.0,
+      "dollars": 31.5
+    },
+    {
+      "name": "Mason Miller",
+      "positions": [
+        "P",
+        "RP"
+      ],
+      "sgp": 11.2,
+      "dollars": 30.4
+    },
+    {
+      "name": "Edwin Diaz",
+      "positions": [
+        "P",
+        "RP"
+      ],
+      "sgp": 11.2,
+      "dollars": 30.4
+    },
+    {
+      "name": "Corbin Carroll",
+      "positions": [
+        "RF",
+        "OF",
+        "UTIL"
+      ],
+      "sgp": 9.6,
+      "dollars": 29.9
+    },
+    {
+      "name": "Fernando Tatis Jr.",
+      "positions": [
+        "RF",
+        "OF",
+        "UTIL",
+        "2B",
+        "2B/SS",
+        "IF"
+      ],
+      "sgp": 9.6,
+      "dollars": 29.7
+    },
+    {
+      "name": "Francisco Lindor",
+      "positions": [
+        "SS",
+        "2B/SS",
+        "IF",
+        "UTIL"
+      ],
+      "sgp": 9.0,
+      "dollars": 27.4
+    },
+    {
+      "name": "Jhoan Duran",
+      "positions": [
+        "P",
+        "RP"
+      ],
+      "sgp": 10.1,
+      "dollars": 26.7
+    },
+    {
+      "name": "Cristopher Sanchez",
+      "positions": [
+        "P",
+        "SP"
+      ],
+      "sgp": 9.9,
+      "dollars": 26.0
+    },
+    {
+      "name": "Matt Olson",
+      "positions": [
+        "1B",
+        "1B/3B",
+        "IF",
+        "UTIL"
+      ],
+      "sgp": 8.5,
+      "dollars": 25.1
+    },
+    {
+      "name": "Christian Yelich",
+      "positions": [
+        "DH",
+        "UTIL"
+      ],
+      "sgp": 8.4,
+      "dollars": 25.0
+    },
+    {
+      "name": "James Wood",
+      "positions": [
+        "LF",
+        "OF",
+        "DH",
+        "UTIL",
+        "RF"
+      ],
+      "sgp": 8.4,
+      "dollars": 24.9
+    },
+    {
+      "name": "Ketel Marte",
+      "positions": [
+        "2B",
+        "2B/SS",
+        "IF",
+        "DH",
+        "UTIL"
+      ],
+      "sgp": 8.2,
+      "dollars": 24.2
+    },
+    {
+      "name": "Jakob Marsee",
+      "positions": [
+        "CF",
+        "OF",
+        "UTIL"
+      ],
+      "sgp": 8.2,
+      "dollars": 24.2
+    },
+    {
+      "name": "Brice Turang",
+      "positions": [
+        "2B",
+        "2B/SS",
+        "IF",
+        "UTIL"
+      ],
+      "sgp": 8.1,
+      "dollars": 23.7
+    },
+    {
+      "name": "Jackson Chourio",
+      "positions": [
+        "LF",
+        "CF",
+        "RF",
+        "OF",
+        "UTIL"
+      ],
+      "sgp": 8.1,
+      "dollars": 23.5
+    },
+    {
+      "name": "Trea Turner",
+      "positions": [
+        "SS",
+        "2B/SS",
+        "IF",
+        "UTIL"
+      ],
+      "sgp": 8.1,
+      "dollars": 23.5
+    },
+    {
+      "name": "Bryce Harper",
+      "positions": [
+        "1B",
+        "1B/3B",
+        "IF",
+        "UTIL"
+      ],
+      "sgp": 8.0,
+      "dollars": 23.3
+    },
+    {
+      "name": "Rafael Devers",
+      "positions": [
+        "1B",
+        "1B/3B",
+        "IF",
+        "DH",
+        "UTIL"
+      ],
+      "sgp": 8.0,
+      "dollars": 23.3
+    },
+    {
+      "name": "Yoshinobu Yamamoto",
+      "positions": [
+        "P",
+        "SP"
+      ],
+      "sgp": 9.0,
+      "dollars": 23.2
+    },
+    {
+      "name": "Manny Machado",
+      "positions": [
+        "3B",
+        "1B/3B",
+        "IF",
+        "UTIL",
+        "DH"
+      ],
+      "sgp": 7.9,
+      "dollars": 23.0
+    },
+    {
+      "name": "Raisel Iglesias",
+      "positions": [
+        "P",
+        "RP"
+      ],
+      "sgp": 8.9,
+      "dollars": 22.8
+    },
+    {
+      "name": "Pete Crow-Armstrong",
+      "positions": [
+        "CF",
+        "OF",
+        "UTIL"
+      ],
+      "sgp": 7.8,
+      "dollars": 22.5
+    },
+    {
+      "name": "Geraldo Perdomo",
+      "positions": [
+        "SS",
+        "2B/SS",
+        "IF",
+        "UTIL"
+      ],
+      "sgp": 7.8,
+      "dollars": 22.3
+    },
+    {
+      "name": "Eugenio Suarez",
+      "positions": [
+        "3B",
+        "1B/3B",
+        "IF",
+        "UTIL",
+        "DH"
+      ],
+      "sgp": 7.8,
+      "dollars": 22.3
+    },
+    {
+      "name": "Chris Sale",
+      "positions": [
+        "P",
+        "SP"
+      ],
+      "sgp": 8.5,
+      "dollars": 21.6
+    },
+    {
+      "name": "Devin Williams",
+      "positions": [
+        "P",
+        "RP"
+      ],
+      "sgp": 8.5,
+      "dollars": 21.5
+    },
+    {
+      "name": "Shohei Ohtani",
+      "positions": [
+        "DH",
+        "UTIL",
+        "P",
+        "SP"
+      ],
+      "sgp": 8.5,
+      "dollars": 21.5
+    },
+    {
+      "name": "Emilio Pagan",
+      "positions": [
+        "P",
+        "RP"
+      ],
+      "sgp": 8.3,
+      "dollars": 21.0
+    },
+    {
+      "name": "Mookie Betts",
+      "positions": [
+        "SS",
+        "2B/SS",
+        "IF",
+        "UTIL"
+      ],
+      "sgp": 7.4,
+      "dollars": 20.6
+    },
+    {
+      "name": "Freddie Freeman",
+      "positions": [
+        "1B",
+        "1B/3B",
+        "IF",
+        "UTIL"
+      ],
+      "sgp": 7.4,
+      "dollars": 20.6
+    },
+    {
+      "name": "William Contreras",
+      "positions": [
+        "C",
+        "DH",
+        "UTIL"
+      ],
+      "sgp": 7.3,
+      "dollars": 20.5
+    },
+    {
+      "name": "Chase Burns",
+      "positions": [
+        "P",
+        "SP"
+      ],
+      "sgp": 8.1,
+      "dollars": 20.3
+    },
+    {
+      "name": "Oneil Cruz",
+      "positions": [
+        "CF",
+        "OF",
+        "UTIL"
+      ],
+      "sgp": 7.2,
+      "dollars": 19.9
+    },
+    {
+      "name": "Logan Webb",
+      "positions": [
+        "P",
+        "SP"
+      ],
+      "sgp": 8.0,
+      "dollars": 19.8
+    }
+  ],
+  "rosters": {
+    "Your Team": [
+      {
+        "name": "Ronald Acuna Jr.",
+        "positions": [
+          "RF",
+          "OF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 33.5,
+        "source": "keeper",
+        "cost": 38,
+        "contract_yr": 2,
+        "surplus_now": -4.5,
+        "surplus_next": -9.5
+      },
+      {
+        "name": "Manny Machado",
+        "positions": [
+          "3B",
+          "1B/3B",
+          "IF",
+          "UTIL",
+          "DH"
+        ],
+        "active": true,
+        "dollars": 23.0,
+        "source": "auction",
+        "cost": 28,
+        "contract_yr": 1,
+        "surplus_now": -5.0,
+        "surplus_next": -8.0
+      },
+      {
+        "name": "Mookie Betts",
+        "positions": [
+          "SS",
+          "2B/SS",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 20.6,
+        "source": "auction",
+        "cost": 26,
+        "contract_yr": 1,
+        "surplus_now": -5.399999999999999,
+        "surplus_next": -8.399999999999999
+      },
+      {
+        "name": "Nick Pivetta",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": false,
+        "dollars": 16.6,
+        "source": "keeper",
+        "cost": 15,
+        "contract_yr": 2,
+        "surplus_now": 1.6000000000000014,
+        "surplus_next": -3.3999999999999986
+      },
+      {
+        "name": "Kyle Stowers",
+        "positions": [
+          "LF",
+          "RF",
+          "OF",
+          "UTIL",
+          "1B",
+          "1B/3B",
+          "IF"
+        ],
+        "active": true,
+        "dollars": 16.1,
+        "source": "keeper",
+        "cost": 4,
+        "contract_yr": 2,
+        "surplus_now": 12.100000000000001,
+        "surplus_next": 7.100000000000001
+      },
+      {
+        "name": "Abner Uribe",
+        "positions": [
+          "P",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 14.5,
+        "source": "keeper",
+        "cost": 4,
+        "contract_yr": 2,
+        "surplus_now": 10.5,
+        "surplus_next": 5.5
+      },
+      {
+        "name": "Spencer Steer",
+        "positions": [
+          "1B",
+          "1B/3B",
+          "IF",
+          "UTIL",
+          "OF",
+          "LF",
+          "RF",
+          "2B",
+          "2B/SS"
+        ],
+        "active": false,
+        "dollars": 14.4,
+        "source": "auction",
+        "cost": 10,
+        "contract_yr": 1,
+        "surplus_now": 4.4,
+        "surplus_next": 1.4000000000000004
+      },
+      {
+        "name": "Brandon Lowe",
+        "positions": [
+          "2B",
+          "2B/SS",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 13.1,
+        "source": "auction",
+        "cost": 13,
+        "contract_yr": 1,
+        "surplus_now": 0.09999999999999964,
+        "surplus_next": -2.9000000000000004
+      },
+      {
+        "name": "Zac Gallen",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": false,
+        "dollars": 11.7,
+        "source": "auction",
+        "cost": 10,
+        "contract_yr": 1,
+        "surplus_now": 1.6999999999999993,
+        "surplus_next": -1.3000000000000007
+      },
+      {
+        "name": "Konnor Griffin",
+        "positions": [
+          "SS",
+          "2B/SS",
+          "IF",
+          "UTIL"
+        ],
+        "active": false,
+        "dollars": 9.9,
+        "source": "keeper",
+        "cost": 4,
+        "contract_yr": 2,
+        "surplus_now": 5.9,
+        "surplus_next": 0.9000000000000004
+      },
+      {
+        "name": "Michael King",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 8.6,
+        "source": "auction",
+        "cost": 19,
+        "contract_yr": 1,
+        "surplus_now": -10.4,
+        "surplus_next": -13.4
+      },
+      {
+        "name": "Robbie Ray",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 8.1,
+        "source": "keeper",
+        "cost": 9,
+        "contract_yr": 3,
+        "surplus_now": -0.9000000000000004,
+        "surplus_next": -8.9
+      },
+      {
+        "name": "Jacob Misiorowski",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": false,
+        "dollars": 7.2,
+        "source": "keeper",
+        "cost": 4,
+        "contract_yr": 2,
+        "surplus_now": 3.2,
+        "surplus_next": -1.7999999999999998
+      },
+      {
+        "name": "Mark Vientos",
+        "positions": [
+          "3B",
+          "1B/3B",
+          "IF",
+          "DH",
+          "UTIL",
+          "1B"
+        ],
+        "active": true,
+        "dollars": 6.0,
+        "source": "auction",
+        "cost": 7,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Jared Jones",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 5.2,
+        "source": "keeper",
+        "cost": 6,
+        "contract_yr": 2,
+        "surplus_now": -0.7999999999999998,
+        "surplus_next": -5.8
+      },
+      {
+        "name": "Tyler Stephenson",
+        "positions": [
+          "C",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 5.1,
+        "source": "auction",
+        "cost": 12,
+        "contract_yr": 1,
+        "surplus_now": -6.9,
+        "surplus_next": -9.9
+      },
+      {
+        "name": "Bubba Chandler",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 4.9,
+        "source": "keeper",
+        "cost": 5,
+        "contract_yr": 2,
+        "surplus_now": -0.09999999999999964,
+        "surplus_next": -5.1
+      },
+      {
+        "name": "Tanner Scott",
+        "positions": [
+          "P",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 3.9,
+        "source": "auction",
+        "cost": 4,
+        "contract_yr": 1,
+        "surplus_now": -0.10000000000000009,
+        "surplus_next": -3.1
+      },
+      {
+        "name": "Joshua Baez",
+        "positions": [
+          "CF",
+          "RF",
+          "OF",
+          "UTIL"
+        ],
+        "active": false,
+        "dollars": 3.9,
+        "source": "auction",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": 2.9,
+        "surplus_next": -0.10000000000000009
+      },
+      {
+        "name": "Andrew Painter",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "keeper",
+        "cost": 7,
+        "contract_yr": 2,
+        "surplus_now": -7.0,
+        "surplus_next": -12.0
+      },
+      {
+        "name": "Javier Sanoja",
+        "positions": [
+          "2B",
+          "3B",
+          "2B/SS",
+          "1B/3B",
+          "IF",
+          "LF",
+          "OF",
+          "UTIL",
+          "P",
+          "RP",
+          "RF"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 5,
+        "contract_yr": 1,
+        "surplus_now": -5.0,
+        "surplus_next": -8.0
+      },
+      {
+        "name": "Charlie Condon",
+        "positions": [
+          "1B",
+          "1B/3B",
+          "IF",
+          "UTIL"
+        ],
+        "active": false,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Ildemaro Vargas",
+        "positions": [
+          "1B",
+          "2B",
+          "2B/SS",
+          "1B/3B",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 18,
+        "contract_yr": 1,
+        "surplus_now": -18.0,
+        "surplus_next": -21.0
+      },
+      {
+        "name": "Tyler Phillips",
+        "positions": [
+          "P",
+          "RP",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 5,
+        "contract_yr": 1,
+        "surplus_now": -5.0,
+        "surplus_next": -8.0
+      },
+      {
+        "name": "Hurston Waldrep",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": false,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Wilber Dotel",
+        "positions": [
+          "P"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Nathan Church",
+        "positions": [
+          "CF",
+          "RF",
+          "OF",
+          "UTIL",
+          "LF"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 2,
+        "contract_yr": 1,
+        "surplus_now": -2.0,
+        "surplus_next": -5.0
+      },
+      {
+        "name": "Jared Triolo",
+        "positions": [
+          "1B",
+          "3B",
+          "SS",
+          "2B/SS",
+          "1B/3B",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "auction",
+        "cost": 5,
+        "contract_yr": 1,
+        "surplus_now": -5.0,
+        "surplus_next": -8.0
+      }
+    ],
+    "Rival A": [
+      {
+        "name": "Kyle Schwarber",
+        "positions": [
+          "DH",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 34.0,
+        "source": "keeper",
+        "cost": 24,
+        "contract_yr": 2,
+        "surplus_now": 10.0,
+        "surplus_next": 5.0
+      },
+      {
+        "name": "Brice Turang",
+        "positions": [
+          "2B",
+          "2B/SS",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 23.7,
+        "source": "keeper",
+        "cost": 16,
+        "contract_yr": 3,
+        "surplus_now": 7.699999999999999,
+        "surplus_next": -0.3000000000000007
+      },
+      {
+        "name": "Logan Webb",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 19.8,
+        "source": "keeper",
+        "cost": 25,
+        "contract_yr": 2,
+        "surplus_now": -5.199999999999999,
+        "surplus_next": -10.2
+      },
+      {
+        "name": "Jesus Luzardo",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 18.3,
+        "source": "keeper",
+        "cost": 13,
+        "contract_yr": 2,
+        "surplus_now": 5.300000000000001,
+        "surplus_next": 0.3000000000000007
+      },
+      {
+        "name": "Nico Hoerner",
+        "positions": [
+          "2B",
+          "2B/SS",
+          "IF",
+          "UTIL",
+          "SS"
+        ],
+        "active": true,
+        "dollars": 16.8,
+        "source": "keeper",
+        "cost": 14,
+        "contract_yr": 2,
+        "surplus_now": 2.8000000000000007,
+        "surplus_next": -2.1999999999999993
+      },
+      {
+        "name": "Will Smith",
+        "positions": [
+          "C",
+          "UTIL"
+        ],
+        "active": false,
+        "dollars": 14.3,
+        "source": "auction",
+        "cost": 24,
+        "contract_yr": 1,
+        "surplus_now": -9.7,
+        "surplus_next": -12.7
+      },
+      {
+        "name": "Drake Baldwin",
+        "positions": [
+          "C",
+          "UTIL",
+          "DH"
+        ],
+        "active": true,
+        "dollars": 13.2,
+        "source": "keeper",
+        "cost": 9,
+        "contract_yr": 3,
+        "surplus_now": 4.199999999999999,
+        "surplus_next": -3.8000000000000007
+      },
+      {
+        "name": "Matthew Boyd",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 12.5,
+        "source": "keeper",
+        "cost": 11,
+        "contract_yr": 2,
+        "surplus_now": 1.5,
+        "surplus_next": -3.5
+      },
+      {
+        "name": "Willi Castro",
+        "positions": [
+          "2B",
+          "3B",
+          "2B/SS",
+          "1B/3B",
+          "IF",
+          "LF",
+          "RF",
+          "OF",
+          "UTIL",
+          "SS",
+          "1B"
+        ],
+        "active": false,
+        "dollars": 8.0,
+        "source": "keeper",
+        "cost": 8,
+        "contract_yr": 2,
+        "surplus_now": 0.0,
+        "surplus_next": -5.0
+      },
+      {
+        "name": "Joey Ortiz",
+        "positions": [
+          "SS",
+          "2B/SS",
+          "IF",
+          "UTIL",
+          "3B",
+          "1B/3B"
+        ],
+        "active": true,
+        "dollars": 8.0,
+        "source": "auction",
+        "cost": 3,
+        "contract_yr": 1,
+        "surplus_now": 5.0,
+        "surplus_next": 2.0
+      },
+      {
+        "name": "Spencer Horwitz",
+        "positions": [
+          "1B",
+          "1B/3B",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 7.9,
+        "source": "keeper",
+        "cost": 7,
+        "contract_yr": 2,
+        "surplus_now": 0.9000000000000004,
+        "surplus_next": -4.1
+      },
+      {
+        "name": "Riley O'Brien",
+        "positions": [
+          "P",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 7.7,
+        "source": "auction",
+        "cost": 3,
+        "contract_yr": 1,
+        "surplus_now": 4.7,
+        "surplus_next": 1.7000000000000002
+      },
+      {
+        "name": "Reynaldo Lopez",
+        "positions": [
+          "P",
+          "SP",
+          "RP"
+        ],
+        "active": false,
+        "dollars": 7.7,
+        "source": "auction",
+        "cost": 7,
+        "contract_yr": 1,
+        "surplus_now": 0.7000000000000002,
+        "surplus_next": -2.3
+      },
+      {
+        "name": "Mike Yastrzemski",
+        "positions": [
+          "RF",
+          "OF",
+          "UTIL",
+          "LF"
+        ],
+        "active": true,
+        "dollars": 7.7,
+        "source": "auction",
+        "cost": 6,
+        "contract_yr": 1,
+        "surplus_now": 1.7000000000000002,
+        "surplus_next": -1.2999999999999998
+      },
+      {
+        "name": "Mickey Moniak",
+        "positions": [
+          "CF",
+          "RF",
+          "OF",
+          "UTIL",
+          "LF",
+          "DH"
+        ],
+        "active": true,
+        "dollars": 7.6,
+        "source": "auction",
+        "cost": 9,
+        "contract_yr": 1,
+        "surplus_now": -1.4000000000000004,
+        "surplus_next": -4.4
+      },
+      {
+        "name": "Esteury Ruiz",
+        "positions": [
+          "LF",
+          "RF",
+          "OF",
+          "UTIL",
+          "CF"
+        ],
+        "active": true,
+        "dollars": 6.5,
+        "source": "auction",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": 5.5,
+        "surplus_next": 2.5
+      },
+      {
+        "name": "Gavin Sheets",
+        "positions": [
+          "LF",
+          "OF",
+          "DH",
+          "UTIL",
+          "1B",
+          "1B/3B",
+          "IF"
+        ],
+        "active": false,
+        "dollars": 5.0,
+        "source": "auction",
+        "cost": 4,
+        "contract_yr": 1,
+        "surplus_now": 1.0,
+        "surplus_next": -2.0
+      },
+      {
+        "name": "Adrian Morejon",
+        "positions": [
+          "P",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 5.0,
+        "source": "auction",
+        "cost": 2,
+        "contract_yr": 1,
+        "surplus_now": 3.0,
+        "surplus_next": 0.0
+      },
+      {
+        "name": "Jordan Walker",
+        "positions": [
+          "RF",
+          "OF",
+          "UTIL"
+        ],
+        "active": false,
+        "dollars": 3.8,
+        "source": "auction",
+        "cost": 5,
+        "contract_yr": 1,
+        "surplus_now": -1.2000000000000002,
+        "surplus_next": -4.2
+      },
+      {
+        "name": "Dylan Lee",
+        "positions": [
+          "P",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 3.3,
+        "source": "faab",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": 2.3,
+        "surplus_next": -0.7000000000000002
+      },
+      {
+        "name": "Brandon Pfaadt",
+        "positions": [
+          "P",
+          "SP",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 3.2,
+        "source": "auction",
+        "cost": 5,
+        "contract_yr": 1,
+        "surplus_now": -1.7999999999999998,
+        "surplus_next": -4.8
+      },
+      {
+        "name": "David Hamilton",
+        "positions": [
+          "2B",
+          "2B/SS",
+          "IF",
+          "UTIL",
+          "3B",
+          "1B/3B",
+          "SS"
+        ],
+        "active": false,
+        "dollars": 2.9,
+        "source": "auction",
+        "cost": 2,
+        "contract_yr": 1,
+        "surplus_now": 0.8999999999999999,
+        "surplus_next": -2.1
+      },
+      {
+        "name": "Nasim Nunez",
+        "positions": [
+          "2B",
+          "SS",
+          "2B/SS",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 1.8,
+        "source": "auction",
+        "cost": 3,
+        "contract_yr": 1,
+        "surplus_now": -1.2,
+        "surplus_next": -4.2
+      },
+      {
+        "name": "Dane Myers",
+        "positions": [
+          "CF",
+          "RF",
+          "OF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 1.1,
+        "source": "faab",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": 0.10000000000000009,
+        "surplus_next": -2.9
+      },
+      {
+        "name": "Bryce Eldridge",
+        "positions": [
+          "DH",
+          "UTIL",
+          "1B",
+          "1B/3B",
+          "IF"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "auction",
+        "cost": 2,
+        "contract_yr": 1,
+        "surplus_now": -2.0,
+        "surplus_next": -5.0
+      },
+      {
+        "name": "Landen Roupp",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": false,
+        "dollars": 0.0,
+        "source": "auction",
+        "cost": 3,
+        "contract_yr": 1,
+        "surplus_now": -3.0,
+        "surplus_next": -6.0
+      },
+      {
+        "name": "Joe Mack",
+        "positions": [
+          "C",
+          "DH",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "auction",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Mason Montgomery",
+        "positions": [
+          "P",
+          "RP",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Esmerlyn Valdez",
+        "positions": [
+          "OF"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 6,
+        "contract_yr": 1,
+        "surplus_now": -6.0,
+        "surplus_next": -9.0
+      },
+      {
+        "name": "Dustin May",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "auction",
+        "cost": 6,
+        "contract_yr": 1,
+        "surplus_now": -6.0,
+        "surplus_next": -9.0
+      }
+    ],
+    "Rival B": [
+      {
+        "name": "Paul Skenes",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 34.8,
+        "source": "keeper",
+        "cost": 9,
+        "contract_yr": 3,
+        "surplus_now": 25.799999999999997,
+        "surplus_next": 17.799999999999997
+      },
+      {
+        "name": "Kyle Tucker",
+        "positions": [
+          "RF",
+          "OF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 31.5,
+        "source": "keeper",
+        "cost": 38,
+        "contract_yr": 2,
+        "surplus_now": -6.5,
+        "surplus_next": -11.5
+      },
+      {
+        "name": "Francisco Lindor",
+        "positions": [
+          "SS",
+          "2B/SS",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 27.4,
+        "source": "auction",
+        "cost": 27,
+        "contract_yr": 1,
+        "surplus_now": 0.3999999999999986,
+        "surplus_next": -2.6000000000000014
+      },
+      {
+        "name": "Matt Olson",
+        "positions": [
+          "1B",
+          "1B/3B",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 25.1,
+        "source": "keeper",
+        "cost": 30,
+        "contract_yr": 2,
+        "surplus_now": -4.899999999999999,
+        "surplus_next": -9.899999999999999
+      },
+      {
+        "name": "Christian Yelich",
+        "positions": [
+          "DH",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 25.0,
+        "source": "auction",
+        "cost": 18,
+        "contract_yr": 1,
+        "surplus_now": 7.0,
+        "surplus_next": 4.0
+      },
+      {
+        "name": "Bryce Harper",
+        "positions": [
+          "1B",
+          "1B/3B",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 23.3,
+        "source": "keeper",
+        "cost": 31,
+        "contract_yr": 4,
+        "surplus_now": -7.699999999999999,
+        "surplus_next": -15.7
+      },
+      {
+        "name": "Geraldo Perdomo",
+        "positions": [
+          "SS",
+          "2B/SS",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 22.3,
+        "source": "keeper",
+        "cost": 10,
+        "contract_yr": 2,
+        "surplus_now": 12.3,
+        "surplus_next": 7.300000000000001
+      },
+      {
+        "name": "Devin Williams",
+        "positions": [
+          "P",
+          "RP"
+        ],
+        "active": false,
+        "dollars": 21.5,
+        "source": "auction",
+        "cost": 25,
+        "contract_yr": 1,
+        "surplus_now": -3.5,
+        "surplus_next": -6.5
+      },
+      {
+        "name": "Blake Snell",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 18.7,
+        "source": "auction",
+        "cost": 22,
+        "contract_yr": 1,
+        "surplus_now": -3.3000000000000007,
+        "surplus_next": -6.300000000000001
+      },
+      {
+        "name": "Ivan Herrera",
+        "positions": [
+          "DH",
+          "UTIL",
+          "C"
+        ],
+        "active": true,
+        "dollars": 17.1,
+        "source": "auction",
+        "cost": 12,
+        "contract_yr": 1,
+        "surplus_now": 5.100000000000001,
+        "surplus_next": 2.1000000000000014
+      },
+      {
+        "name": "Trevor Megill",
+        "positions": [
+          "P",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 15.4,
+        "source": "auction",
+        "cost": 13,
+        "contract_yr": 1,
+        "surplus_now": 2.4000000000000004,
+        "surplus_next": -0.5999999999999996
+      },
+      {
+        "name": "Max Muncy",
+        "positions": [
+          "3B",
+          "1B/3B",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 13.1,
+        "source": "keeper",
+        "cost": 13,
+        "contract_yr": 3,
+        "surplus_now": 0.09999999999999964,
+        "surplus_next": -7.9
+      },
+      {
+        "name": "Nick Lodolo",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 12.4,
+        "source": "keeper",
+        "cost": 11,
+        "contract_yr": 3,
+        "surplus_now": 1.4000000000000004,
+        "surplus_next": -6.6
+      },
+      {
+        "name": "Justin Crawford",
+        "positions": [
+          "LF",
+          "CF",
+          "OF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 6.7,
+        "source": "keeper",
+        "cost": 5,
+        "contract_yr": 2,
+        "surplus_now": 1.7000000000000002,
+        "surplus_next": -3.3
+      },
+      {
+        "name": "Clayton Beeter",
+        "positions": [
+          "P",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 4.5,
+        "source": "auction",
+        "cost": 4,
+        "contract_yr": 1,
+        "surplus_now": 0.5,
+        "surplus_next": -2.5
+      },
+      {
+        "name": "Jake McCarthy",
+        "positions": [
+          "LF",
+          "OF",
+          "UTIL",
+          "CF",
+          "RF"
+        ],
+        "active": true,
+        "dollars": 1.8,
+        "source": "keeper",
+        "cost": 5,
+        "contract_yr": 2,
+        "surplus_now": -3.2,
+        "surplus_next": -8.2
+      },
+      {
+        "name": "Nick Gonzales",
+        "positions": [
+          "2B",
+          "2B/SS",
+          "IF",
+          "UTIL",
+          "3B",
+          "1B/3B"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "keeper",
+        "cost": 4,
+        "contract_yr": 2,
+        "surplus_now": -4.0,
+        "surplus_next": -9.0
+      },
+      {
+        "name": "Justin Wrobleski",
+        "positions": [
+          "P",
+          "RP",
+          "SP"
+        ],
+        "active": false,
+        "dollars": 0.0,
+        "source": "auction",
+        "cost": 3,
+        "contract_yr": 1,
+        "surplus_now": -3.0,
+        "surplus_next": -6.0
+      },
+      {
+        "name": "Didier Fuentes",
+        "positions": [
+          "P",
+          "SP",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "auction",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Jett Williams",
+        "positions": [
+          "2B",
+          "SS",
+          "2B/SS",
+          "IF",
+          "CF",
+          "OF",
+          "UTIL"
+        ],
+        "active": false,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Keibert Ruiz",
+        "positions": [
+          "C",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "auction",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Griffin Conine",
+        "positions": [
+          "LF",
+          "RF",
+          "OF",
+          "UTIL",
+          "DH"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "keeper",
+        "cost": 4,
+        "contract_yr": 2,
+        "surplus_now": -4.0,
+        "surplus_next": -9.0
+      },
+      {
+        "name": "Zac Veen",
+        "positions": [
+          "LF",
+          "RF",
+          "OF",
+          "UTIL"
+        ],
+        "active": false,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Christian Scott",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 5,
+        "contract_yr": 1,
+        "surplus_now": -5.0,
+        "surplus_next": -8.0
+      },
+      {
+        "name": "A.J. Ewing",
+        "positions": [
+          "OF"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 17,
+        "contract_yr": 1,
+        "surplus_now": -17.0,
+        "surplus_next": -20.0
+      },
+      {
+        "name": "Quinn Mathews",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": false,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 2,
+        "contract_yr": 1,
+        "surplus_now": -2.0,
+        "surplus_next": -5.0
+      },
+      {
+        "name": "Connelly Early",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": false,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 5,
+        "contract_yr": 1,
+        "surplus_now": -5.0,
+        "surplus_next": -8.0
+      },
+      {
+        "name": "Jonathan Loaisiga",
+        "positions": [
+          "P",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "auction",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Hunter Dobbins",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      }
+    ],
+    "Rival C": [
+      {
+        "name": "Cristopher Sanchez",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 26.0,
+        "source": "auction",
+        "cost": 19,
+        "contract_yr": 1,
+        "surplus_now": 7.0,
+        "surplus_next": 4.0
+      },
+      {
+        "name": "James Wood",
+        "positions": [
+          "LF",
+          "OF",
+          "DH",
+          "UTIL",
+          "RF"
+        ],
+        "active": true,
+        "dollars": 24.9,
+        "source": "keeper",
+        "cost": 9,
+        "contract_yr": 3,
+        "surplus_now": 15.899999999999999,
+        "surplus_next": 7.899999999999999
+      },
+      {
+        "name": "Trea Turner",
+        "positions": [
+          "SS",
+          "2B/SS",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 23.5,
+        "source": "auction",
+        "cost": 35,
+        "contract_yr": 1,
+        "surplus_now": -11.5,
+        "surplus_next": -14.5
+      },
+      {
+        "name": "Chris Sale",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 21.6,
+        "source": "keeper",
+        "cost": 28,
+        "contract_yr": 3,
+        "surplus_now": -6.399999999999999,
+        "surplus_next": -14.399999999999999
+      },
+      {
+        "name": "Oneil Cruz",
+        "positions": [
+          "CF",
+          "OF",
+          "UTIL"
+        ],
+        "active": false,
+        "dollars": 19.9,
+        "source": "auction",
+        "cost": 25,
+        "contract_yr": 1,
+        "surplus_now": -5.100000000000001,
+        "surplus_next": -8.100000000000001
+      },
+      {
+        "name": "Alex Bregman",
+        "positions": [
+          "3B",
+          "1B/3B",
+          "IF",
+          "UTIL",
+          "DH"
+        ],
+        "active": true,
+        "dollars": 17.2,
+        "source": "auction",
+        "cost": 27,
+        "contract_yr": 1,
+        "surplus_now": -9.8,
+        "surplus_next": -12.8
+      },
+      {
+        "name": "Heliot Ramos",
+        "positions": [
+          "LF",
+          "OF",
+          "UTIL"
+        ],
+        "active": false,
+        "dollars": 13.9,
+        "source": "keeper",
+        "cost": 9,
+        "contract_yr": 3,
+        "surplus_now": 4.9,
+        "surplus_next": -3.0999999999999996
+      },
+      {
+        "name": "Sal Frelick",
+        "positions": [
+          "RF",
+          "OF",
+          "UTIL"
+        ],
+        "active": false,
+        "dollars": 13.6,
+        "source": "keeper",
+        "cost": 8,
+        "contract_yr": 2,
+        "surplus_now": 5.6,
+        "surplus_next": 0.5999999999999996
+      },
+      {
+        "name": "Xander Bogaerts",
+        "positions": [
+          "SS",
+          "2B/SS",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 13.5,
+        "source": "auction",
+        "cost": 13,
+        "contract_yr": 1,
+        "surplus_now": 0.5,
+        "surplus_next": -2.5
+      },
+      {
+        "name": "Alec Burleson",
+        "positions": [
+          "1B",
+          "1B/3B",
+          "IF",
+          "LF",
+          "RF",
+          "OF",
+          "DH",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 13.0,
+        "source": "keeper",
+        "cost": 11,
+        "contract_yr": 3,
+        "surplus_now": 2.0,
+        "surplus_next": -6.0
+      },
+      {
+        "name": "Brandon Marsh",
+        "positions": [
+          "LF",
+          "CF",
+          "OF",
+          "UTIL",
+          "RF"
+        ],
+        "active": true,
+        "dollars": 11.2,
+        "source": "auction",
+        "cost": 12,
+        "contract_yr": 1,
+        "surplus_now": -0.8000000000000007,
+        "surplus_next": -3.8000000000000007
+      },
+      {
+        "name": "Andrew Vaughn",
+        "positions": [
+          "1B",
+          "1B/3B",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 10.0,
+        "source": "keeper",
+        "cost": 4,
+        "contract_yr": 2,
+        "surplus_now": 6.0,
+        "surplus_next": 1.0
+      },
+      {
+        "name": "Jake Cronenworth",
+        "positions": [
+          "2B",
+          "2B/SS",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 9.3,
+        "source": "auction",
+        "cost": 8,
+        "contract_yr": 1,
+        "surplus_now": 1.3000000000000007,
+        "surplus_next": -1.6999999999999993
+      },
+      {
+        "name": "Edward Cabrera",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 9.0,
+        "source": "keeper",
+        "cost": 4,
+        "contract_yr": 2,
+        "surplus_now": 5.0,
+        "surplus_next": 0.0
+      },
+      {
+        "name": "Sandy Alcantara",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 5.2,
+        "source": "keeper",
+        "cost": 10,
+        "contract_yr": 3,
+        "surplus_now": -4.8,
+        "surplus_next": -12.8
+      },
+      {
+        "name": "Paul Sewald",
+        "positions": [
+          "P",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 3.3,
+        "source": "auction",
+        "cost": 6,
+        "contract_yr": 1,
+        "surplus_now": -2.7,
+        "surplus_next": -5.7
+      },
+      {
+        "name": "Max Meyer",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "keeper",
+        "cost": 4,
+        "contract_yr": 2,
+        "surplus_now": -4.0,
+        "surplus_next": -9.0
+      },
+      {
+        "name": "Marcell Ozuna",
+        "positions": [
+          "DH",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "auction",
+        "cost": 3,
+        "contract_yr": 1,
+        "surplus_now": -3.0,
+        "surplus_next": -6.0
+      },
+      {
+        "name": "Dominic Smith",
+        "positions": [
+          "1B",
+          "1B/3B",
+          "IF",
+          "UTIL",
+          "DH"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 7,
+        "contract_yr": 1,
+        "surplus_now": -7.0,
+        "surplus_next": -10.0
+      },
+      {
+        "name": "Ben Brown",
+        "positions": [
+          "P",
+          "SP",
+          "RP"
+        ],
+        "active": false,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 18,
+        "contract_yr": 1,
+        "surplus_now": -18.0,
+        "surplus_next": -21.0
+      },
+      {
+        "name": "Luis Campusano",
+        "positions": [
+          "DH",
+          "UTIL",
+          "C"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 10,
+        "contract_yr": 1,
+        "surplus_now": -10.0,
+        "surplus_next": -13.0
+      },
+      {
+        "name": "Juan Morillo",
+        "positions": [
+          "P",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Antonio Senzatela",
+        "positions": [
+          "P",
+          "SP",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 9,
+        "contract_yr": 1,
+        "surplus_now": -9.0,
+        "surplus_next": -12.0
+      },
+      {
+        "name": "Eduardo Rodriguez",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 9,
+        "contract_yr": 1,
+        "surplus_now": -9.0,
+        "surplus_next": -12.0
+      },
+      {
+        "name": "Luis Torrens",
+        "positions": [
+          "C",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Jimmy Crooks",
+        "positions": [
+          "C",
+          "UTIL"
+        ],
+        "active": false,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 5,
+        "contract_yr": 1,
+        "surplus_now": -5.0,
+        "surplus_next": -8.0
+      },
+      {
+        "name": "Alex Call",
+        "positions": [
+          "LF",
+          "RF",
+          "OF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "auction",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Tyler Callihan",
+        "positions": [
+          "2B",
+          "2B/SS",
+          "IF",
+          "LF",
+          "OF",
+          "UTIL",
+          "RF"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      }
+    ],
+    "Rival D": [
+      {
+        "name": "Elly De La Cruz",
+        "positions": [
+          "SS",
+          "2B/SS",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 31.7,
+        "source": "keeper",
+        "cost": 19,
+        "contract_yr": 4,
+        "surplus_now": 12.7,
+        "surplus_next": 4.699999999999999
+      },
+      {
+        "name": "Edwin Diaz",
+        "positions": [
+          "P",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 30.4,
+        "source": "keeper",
+        "cost": 17,
+        "contract_yr": 4,
+        "surplus_now": 13.399999999999999,
+        "surplus_next": 5.399999999999999
+      },
+      {
+        "name": "Corbin Carroll",
+        "positions": [
+          "RF",
+          "OF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 29.9,
+        "source": "keeper",
+        "cost": 25,
+        "contract_yr": 5,
+        "surplus_now": 4.899999999999999,
+        "surplus_next": -3.1000000000000014
+      },
+      {
+        "name": "Raisel Iglesias",
+        "positions": [
+          "P",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 22.8,
+        "source": "auction",
+        "cost": 16,
+        "contract_yr": 1,
+        "surplus_now": 6.800000000000001,
+        "surplus_next": 3.8000000000000007
+      },
+      {
+        "name": "William Contreras",
+        "positions": [
+          "C",
+          "DH",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 20.5,
+        "source": "keeper",
+        "cost": 25,
+        "contract_yr": 5,
+        "surplus_now": -4.5,
+        "surplus_next": -12.5
+      },
+      {
+        "name": "Michael Busch",
+        "positions": [
+          "1B",
+          "1B/3B",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 19.2,
+        "source": "keeper",
+        "cost": 17,
+        "contract_yr": 4,
+        "surplus_now": 2.1999999999999993,
+        "surplus_next": -5.800000000000001
+      },
+      {
+        "name": "Teoscar Hernandez",
+        "positions": [
+          "RF",
+          "OF",
+          "UTIL",
+          "LF"
+        ],
+        "active": true,
+        "dollars": 15.2,
+        "source": "auction",
+        "cost": 20,
+        "contract_yr": 1,
+        "surplus_now": -4.800000000000001,
+        "surplus_next": -7.800000000000001
+      },
+      {
+        "name": "Ozzie Albies",
+        "positions": [
+          "2B",
+          "2B/SS",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 13.4,
+        "source": "keeper",
+        "cost": 18,
+        "contract_yr": 2,
+        "surplus_now": -4.6,
+        "surplus_next": -9.6
+      },
+      {
+        "name": "Otto Lopez",
+        "positions": [
+          "2B",
+          "SS",
+          "2B/SS",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 11.8,
+        "source": "keeper",
+        "cost": 9,
+        "contract_yr": 3,
+        "surplus_now": 2.8000000000000007,
+        "surplus_next": -5.199999999999999
+      },
+      {
+        "name": "Kevin Ginkel",
+        "positions": [
+          "P",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 7.5,
+        "source": "auction",
+        "cost": 5,
+        "contract_yr": 1,
+        "surplus_now": 2.5,
+        "surplus_next": -0.5
+      },
+      {
+        "name": "Carson Benge",
+        "positions": [
+          "LF",
+          "CF",
+          "RF",
+          "OF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 7.4,
+        "source": "keeper",
+        "cost": 4,
+        "contract_yr": 2,
+        "surplus_now": 3.4000000000000004,
+        "surplus_next": -1.5999999999999996
+      },
+      {
+        "name": "Gabriel Moreno",
+        "positions": [
+          "C",
+          "UTIL",
+          "DH"
+        ],
+        "active": true,
+        "dollars": 7.0,
+        "source": "auction",
+        "cost": 13,
+        "contract_yr": 1,
+        "surplus_now": -6.0,
+        "surplus_next": -9.0
+      },
+      {
+        "name": "Jack Dreyer",
+        "positions": [
+          "P",
+          "SP",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 6.4,
+        "source": "faab",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": 5.4,
+        "surplus_next": 2.4000000000000004
+      },
+      {
+        "name": "Clay Holmes",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": false,
+        "dollars": 5.2,
+        "source": "keeper",
+        "cost": 14,
+        "contract_yr": 2,
+        "surplus_now": -8.8,
+        "surplus_next": -13.8
+      },
+      {
+        "name": "Luke Weaver",
+        "positions": [
+          "P",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 4.1,
+        "source": "auction",
+        "cost": 4,
+        "contract_yr": 1,
+        "surplus_now": 0.09999999999999964,
+        "surplus_next": -2.9000000000000004
+      },
+      {
+        "name": "Chad Patrick",
+        "positions": [
+          "P",
+          "SP",
+          "RP"
+        ],
+        "active": true,
+        "dollars": 4.0,
+        "source": "keeper",
+        "cost": 6,
+        "contract_yr": 2,
+        "surplus_now": -2.0,
+        "surplus_next": -7.0
+      },
+      {
+        "name": "Brady House",
+        "positions": [
+          "3B",
+          "1B/3B",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 2.3,
+        "source": "keeper",
+        "cost": 4,
+        "contract_yr": 2,
+        "surplus_now": -1.7000000000000002,
+        "surplus_next": -6.7
+      },
+      {
+        "name": "Kyle Karros",
+        "positions": [
+          "3B",
+          "1B/3B",
+          "IF",
+          "UTIL"
+        ],
+        "active": false,
+        "dollars": 1.7,
+        "source": "faab",
+        "cost": 22,
+        "contract_yr": 1,
+        "surplus_now": -20.3,
+        "surplus_next": -23.3
+      },
+      {
+        "name": "JJ Bleday",
+        "positions": [
+          "CF",
+          "RF",
+          "OF",
+          "UTIL",
+          "LF"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "auction",
+        "cost": 2,
+        "contract_yr": 1,
+        "surplus_now": -2.0,
+        "surplus_next": -5.0
+      },
+      {
+        "name": "Michael McGreevy",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": false,
+        "dollars": 0.0,
+        "source": "keeper",
+        "cost": 5,
+        "contract_yr": 2,
+        "surplus_now": -5.0,
+        "surplus_next": -10.0
+      },
+      {
+        "name": "Kyle Harrison",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": false,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 8,
+        "contract_yr": 1,
+        "surplus_now": -8.0,
+        "surplus_next": -11.0
+      },
+      {
+        "name": "Martin Perez",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Ty France",
+        "positions": [
+          "1B",
+          "1B/3B",
+          "IF",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Heriberto Hernandez",
+        "positions": [
+          "LF",
+          "OF",
+          "DH",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "auction",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Zac Thornton",
+        "positions": [
+          "P"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 2,
+        "contract_yr": 1,
+        "surplus_now": -2.0,
+        "surplus_next": -5.0
+      },
+      {
+        "name": "Tyler Locklear",
+        "positions": [
+          "1B",
+          "1B/3B",
+          "IF",
+          "UTIL"
+        ],
+        "active": false,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Michael Soroka",
+        "positions": [
+          "P",
+          "SP"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "auction",
+        "cost": 1,
+        "contract_yr": 1,
+        "surplus_now": -1.0,
+        "surplus_next": -4.0
+      },
+      {
+        "name": "Abimelec Ortiz",
+        "positions": [
+          "1B",
+          "1B/3B",
+          "IF",
+          "RF",
+          "OF",
+          "DH",
+          "UTIL"
+        ],
+        "active": true,
+        "dollars": 0.0,
+        "source": "faab",
+        "cost": 2,
+        "contract_yr": 1,
+        "surplus_now": -2.0,
+        "surplus_next": -5.0
+      }
+    ]
+  },
+  "graded_offers": [
+    {
+      "label": "Rival D: Manny Machado+Mookie Betts for Carson Benge",
+      "partner": "Rival D",
+      "you_send": [
+        "Manny Machado",
+        "Mookie Betts"
+      ],
+      "you_receive": [
+        "Carson Benge"
+      ],
+      "grade": "B",
+      "accept_likelihood": "Likely",
+      "roto_delta": -1.0,
+      "surplus_now_delta": 13.8,
+      "surplus_next_delta": 14.8
+    },
+    {
+      "label": "Rival A: Mookie Betts+Ronald Acuna Jr. for Jordan Walker",
+      "partner": "Rival A",
+      "you_send": [
+        "Mookie Betts",
+        "Ronald Acuna Jr."
+      ],
+      "you_receive": [
+        "Jordan Walker"
+      ],
+      "grade": "B",
+      "accept_likelihood": "Likely",
+      "roto_delta": -1.0,
+      "surplus_now_delta": 8.7,
+      "surplus_next_delta": 13.7
+    },
+    {
+      "label": "Another Team: Mookie Betts+Bubba Chandler+Tyler Phillips for JR Ritchie+Ha-Seong Kim+Grant Holmes+Brandon Sproat",
+      "partner": "Another Team",
+      "you_send": [
+        "Mookie Betts",
+        "Bubba Chandler",
+        "Tyler Phillips"
+      ],
+      "you_receive": [
+        "JR Ritchie",
+        "Ha-Seong Kim",
+        "Grant Holmes",
+        "Brandon Sproat"
+      ],
+      "grade": "C",
+      "accept_likelihood": "Likely",
+      "roto_delta": -1.0,
+      "surplus_now_delta": 5.2,
+      "surplus_next_delta": 2.2
+    }
+  ],
+  "engineering_note": {
+    "title": "The projection source assumed everyone still has a team",
+    "body": "A trade candidate's rest-of-season projection looked strong until a cross-check against the league's real constitution turned up a rule: stats only accrue when a player is on an NL club's active roster. The player in question had actually become a real-life free agent, no MLB team at all, but the projection source did not know that and kept forecasting a full season off stale pre-release data.",
+    "before": {
+      "player_value_dollars": 15,
+      "trade_surplus_next_yr": 30
+    },
+    "after": {
+      "player_value_dollars": 0,
+      "trade_surplus_next_yr": 14
+    }
+  }
+}
