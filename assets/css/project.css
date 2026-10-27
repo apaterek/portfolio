@@ -129,8 +129,9 @@ a.project-cta { border-bottom: var(--stroke) solid var(--ink); padding-bottom: 2
 
 /* ============================================================
    LONG-FORM MEMO — section headings, numbered recommendations,
-   and the byline under the title. Used by the creative-tech memo;
-   reusable by any long read that needs internal structure.
+   and the byline under the title. No page uses these right now;
+   kept as the ready-made treatment for any long read that needs
+   internal structure.
    base.css zeroes list padding and kills ul markers, so ol has to
    restore its own indent and numerals here.
    ============================================================ */
@@ -261,8 +262,7 @@ a.project-cta { border-bottom: var(--stroke) solid var(--ink); padding-bottom: 2
    TK — scaffolding marker. Deliberately outside the palette (it
    is meant to be jarring) so unfinished copy cannot ship
    unnoticed. Currently UNUSED: every .tk has been replaced with
-   real copy. Kept for the next scaffolded page (the Postcard
-   InDesign builds are still to come). Wrap placeholder text in
+   real copy. Kept for the next scaffolded page. Wrap placeholder text in
    <span class="tk">, and grep 'class="tk"' before publishing.
    ============================================================ */
 .tk {

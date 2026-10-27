@@ -144,9 +144,11 @@ main.work-grid { grid-row-gap: 60px; }
 
 /* ============================================================
    PITCH INTRO — the lead statement above the cards on
-   pitch-decks.html. Same full-width band shape as .practice/.clients
-   above; reuses their heading/body type (.practice-lead/-body) so
-   the three bands read as one family instead of drifting apart.
+   pitch-decks.html. Same full-width band shape as .clients below;
+   reuses its heading type (.practice-lead) and the body type
+   (.practice-body) so the two bands read as one family instead of
+   drifting apart. The practice-* names are inherited from the
+   retired .practice band and now serve pitch-decks.html alone.
    ============================================================ */
 .pitch-intro {
   grid-column: 1 / -1;
@@ -158,40 +160,16 @@ main.work-grid { grid-row-gap: 60px; }
 }
 .pitch-intro .practice-body { margin-bottom: 0; max-width: 60ch; }
 
-/* ============================================================
-   PRACTICE — the second full-width band, sitting between the
-   project cards and the logo wall. Deliberately NOT a fifth
-   .project-card: the cards are client campaigns with a poster,
-   a credit, and a result, and a card here would invite creative
-   technology to be judged as a campaign it is not. Placed after
-   the evidence and before the credentials, which is where a
-   reader who just scanned four projects asks what comes next.
-   Heading type is shared with .clients-intro above.
-   ============================================================ */
-.practice {
-  grid-column: 1 / -1;          /* = card-block width, same as .clients */
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
+/* Band body copy. Only pitch-decks.html uses this now; the .practice
+   band it was written for is gone. The .pitch-intro override just
+   above wins on specificity, not source order, so this base rule can
+   sit after it safely. */
 .practice-body {
   max-width: 54ch;
   font-size: 17px;
   line-height: 1.6em;
   margin-bottom: 28px;
 }
-.practice-link {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  border-bottom: var(--stroke) solid var(--ink);
-  padding-bottom: 2px;
-  transition: opacity 0.15s ease;
-}
-.practice-link:hover { opacity: 0.6; }
 
 /* ============================================================
    CLIENTS — a uniform, borderless logo wall below the project
@@ -208,8 +186,8 @@ main.work-grid { grid-row-gap: 60px; }
   flex-direction: column;
   align-items: center;
 }
-/* Shared by both full-width bands (clients + practice). One declaration,
-   two selectors, so the two headings cannot drift apart. */
+/* Shared by both full-width bands (clients + pitch-intro). One
+   declaration, two selectors, so the two headings cannot drift apart. */
 .clients-intro,
 .practice-lead {
   width: 100%;                  /* spans the full card block, centered */
