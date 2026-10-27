@@ -16,6 +16,9 @@ media/images/OTP/
 # Internal working notes — kept local, not published to the public repo
 copy/
 docs/
+# Prospective-partnership working notes: names third parties who have not yet
+# agreed to be named, so it must never reach the public repo or Pages.
+bob-partington-partnership-notes.md
 docs/user-instructions/   # file-prep guidance only (already covered by docs/, kept explicit)
 writing/
 CLAUDE.md
