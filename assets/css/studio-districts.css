@@ -1,0 +1,923 @@
+/* ==========================================================================
+   STUDIO DISTRICTS
+   A scroll reading of the Studio District proposal.
+
+   Type, color, line weight and geometry come from
+   01_Guidance/Figure-Style-Guide_v2.md, which governs the 73 figures in
+   the deck. This sheet is that guide carried onto a screen. It is
+   self contained on purpose: it defines every value it uses and inherits
+   nothing from the site, so this page keeps the character of the work it
+   is about rather than the character of the site it sits on.
+
+   Two rules from the guide do most of the work here.
+
+   Serif speaks to the reader, sans labels the drawing. IvyPresto carries
+   every word of argument. Neue Haas Grotesk carries every word that
+   points at something: section numbers, band headings, row labels, the
+   figure affordances. A reader should be able to tell at a glance, and
+   without reading, which text is argument and which is annotation.
+
+   One accent element per section. Not one accent color. One element.
+   If two things are blue on a screen, neither one is important.
+   ========================================================================== */
+
+:root {
+  /* ---------------------------------------------------------- palette
+     Seven values, and that is the entire palette for 73 figures. The
+     page adds none. Each one keeps the job the guide gives it: text-2
+     is italic serif description and never a rule or a label, rule is
+     hairlines only, gray is micro labels and source lines. */
+  --ink:     #111111;
+  --text-2:  #444444;
+  --gray:    #9a9a9a;
+  --rule:    #dcdcdc;
+  --paper:   #ffffff;
+  --accent:  #1c3f66;
+  --amber:   #b8752a;
+
+  /* ------------------------------------------------------------ faces
+     Both families are Adobe Fonts. Until a kit carrying them is linked
+     in the page head the stacks below fall back, in order, on the
+     closest thing a Mac or a PC is likely to have: a high contrast
+     Didone for the editorial voice, a neo grotesque for the drawing
+     voice. The page holds its shape either way. See README.
+
+     Helvetica Neue is retired inside the figures, per the guide. As a
+     web fallback for Neue Haas Grotesk it is the right answer rather
+     than the wrong one: NHGD is the Helvetica source design, redrawn. */
+  --serif: "ivypresto-headline", "IvyPresto Headline", "Didot",
+           "Bodoni 72", "Hoefler Text", "Playfair Display",
+           "Times New Roman", Georgia, serif;
+  --sans:  "neue-haas-grotesk-display", "Neue Haas Grotesk Display Pro",
+           "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* Weight is declared on the Medium and on the italics, never on the
+     Roman, exactly as the guide has it for the artwork. */
+  --w-light-italic: 300;
+  --w-thin-italic:  200;
+  --w-medium:       500;
+  --w-light:        300;
+
+  /* ------------------------------------------------------- type scale
+     Eight sizes, as in the deck. Do not introduce a ninth: if
+     something needs a size that is not here, it is competing with
+     something that should be winning.
+
+     The deck's eight are points on a 792pt artboard. These are the
+     same eight roles at the size a screen reads them, so the ratios
+     carry over while running copy sits where a reader can take it. */
+  --t-display: clamp(42px, 7.2vw, 102px);  /* cover, the one big line  */
+  --t-head:    clamp(29px, 3.3vw, 45px);   /* section headline, 28pt   */
+  --t-deck:    clamp(20px, 1.7vw, 26px);   /* the deck, one sentence   */
+  --t-body:    clamp(17px, 1.15vw, 19.5px);/* running serif argument   */
+  --t-desc:    clamp(15.5px, 1.05vw, 18px);/* italic description, #444 */
+  --t-label:   13px;                       /* sans caps, the labels    */
+  --t-micro:   11.5px;                     /* sans caps light, gray    */
+  --t-source:  11px;                       /* thin italic, gray        */
+
+  /* All caps sans always carries tracking. Untracked caps at this size
+     closes up and stops being readable. Node labels take a little more
+     because they are larger and set tighter optically. */
+  --track-label: .12em;
+  --track-node:  .13em;
+  --track-num:   .08em;
+
+  /* ----------------------------------------------------- line weights
+     Four, no exceptions. The guide's hairline is 0.25pt, which is
+     under a screen pixel, so on screen the hairline and the secondary
+     are both one pixel and the difference between them is carried by
+     color: the hairline is always --rule, the secondary is always ink.
+     That is how the guide separates them in the artwork too. */
+  --w-hairline:  1px;   /* section and band rules. Always --rule       */
+  --w-secondary: 1px;   /* boxes, panel rules, firm boundaries. Ink    */
+  --w-primary:   2px;   /* forward flow. The accent mark               */
+  --w-emphasis:  3px;   /* the one line a thing is about               */
+
+  /* --------------------------------------------------------- geometry
+     The artboard is 792 by 576 with a 55.44 left margin and a 681.12
+     measure, so the margin is seven per cent of the width and the
+     measure is eighty six. The two panel gutter is 32pt, four per cent.
+     Those three proportions are what this page is built on. */
+  --measure:      1180px;
+  --margin:       clamp(20px, 7vw, 86px);
+  --gutter-panel: clamp(24px, 4vw, 48px);
+
+  /* Vertical rhythm. The band rows sit on a 23pt pitch and a row
+     description sits 11pt under its label, which is the 1.4 and the
+     0.48 below. */
+  --pitch:   1.4;
+  --leading: 1.52;
+
+  --ease: cubic-bezier(.22, .61, .36, 1);
+  --quick: 240ms;
+  --mid:   420ms;
+  --slow:  720ms;
+}
+
+/* ============================================================== reset */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: var(--t-body);
+  line-height: var(--leading);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+h1, h2, h3, p, blockquote, figure, ol, ul { margin: 0; }
+ol, ul { padding: 0; list-style: none; }
+em, i { font-style: italic; }
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: var(--w-primary) solid var(--accent);
+  outline-offset: 3px;
+}
+
+.sd-skip {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  padding: 10px 16px;
+  background: var(--ink); color: var(--paper);
+  font-family: var(--sans); font-weight: var(--w-medium);
+  font-size: var(--t-micro); letter-spacing: var(--track-label);
+  text-transform: uppercase; text-decoration: none;
+}
+.sd-skip:focus { left: 12px; top: 12px; }
+
+/* ====================================================== type roles ==
+   Each class below is one row of the guide's type stack. Nothing on
+   this page sets a face, a size or a tracking outside these. */
+
+.sd-label {                      /* NHGD 65 Medium, caps, ink         */
+  font-family: var(--sans);
+  font-weight: var(--w-medium);
+  font-size: var(--t-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.sd-micro {                      /* NHGD 45 Light, caps, gray         */
+  font-family: var(--sans);
+  font-weight: var(--w-light);
+  font-size: var(--t-micro);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--gray);
+  line-height: 1.3;
+}
+
+.sd-source {                     /* IvyPresto Thin Italic, gray       */
+  font-family: var(--serif);
+  font-weight: var(--w-thin-italic);
+  font-style: italic;
+  font-size: var(--t-source);
+  color: var(--gray);
+}
+
+/* Running argument. The measure is held in characters rather than
+   pixels so it stays a measure when the type scales. */
+.sd-prose { max-width: 62ch; }
+.sd-prose > * + * { margin-top: .9em; }
+
+.sd-prose p {
+  font-family: var(--serif);
+  font-size: var(--t-body);
+  line-height: var(--leading);
+}
+
+/* The one line in a passage that turns it. Italic serif description is
+   the guide's own device for a sentence that comments rather than
+   states, and text-2 is the only color it is allowed. */
+.sd-step--lead {
+  font-weight: var(--w-light-italic);
+  font-style: italic;
+  color: var(--text-2);
+  font-size: var(--t-desc);
+}
+
+/* ========================================================= geometry */
+
+.sd-wrap {
+  width: 100%;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: var(--margin);
+}
+
+/* ============================================================ chrome */
+
+.sd-progress {
+  position: fixed; inset: 0 0 auto 0; z-index: 60;
+  height: var(--w-emphasis);
+  pointer-events: none;
+  background: transparent;
+}
+.sd-progress__bar {
+  display: block; height: 100%; width: 0%;
+  background: var(--ink);
+}
+
+/* The masthead stays a hairline and a wordmark. This page is a reading,
+   not a destination, so the chrome says where you are and gets out. */
+.sd-top {
+  position: relative; z-index: 50;
+  display: flex; align-items: baseline;
+  justify-content: space-between; gap: 20px;
+  max-width: var(--measure); margin-inline: auto;
+  padding: 20px var(--margin) 16px;
+}
+.sd-top__mark {
+  font-family: var(--serif);
+  font-size: var(--t-label);
+  letter-spacing: .01em;
+  text-decoration: none;
+}
+.sd-top__mark:hover { text-decoration: underline; text-underline-offset: 3px; }
+.sd-top__meta a { text-decoration: none; }
+.sd-top__meta a:hover { color: var(--accent); }
+
+/* Section marker. A micro label on paper, which is what the guide uses
+   for a label that has to sit over a drawing. */
+.sd-marker {
+  position: fixed; left: 50%; bottom: 18px; translate: -50% 0; z-index: 55;
+  display: flex; align-items: baseline; gap: .7em;
+  padding: 8px 14px;
+  background: var(--paper);
+  border: var(--w-hairline) solid var(--rule);
+  opacity: 0; transform: translateY(8px);
+  transition: opacity var(--mid) var(--ease), transform var(--mid) var(--ease);
+  pointer-events: none;
+  max-width: calc(100vw - (2 * var(--margin)));
+}
+.sd-marker.is-on { opacity: 1; transform: none; }
+.sd-marker__num { color: var(--ink); }
+.sd-marker__name {
+  color: var(--gray);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* ============================================================== hero */
+
+.sd-hero {
+  position: relative;
+  min-height: 92svh;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+  background: var(--ink);
+}
+.sd-hero__media { position: absolute; inset: 0; z-index: 0; will-change: transform; }
+.sd-hero__img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Paper type over a photograph needs the photograph held down. A
+   gradient, not a flat wash, so the picture keeps its top half. */
+.sd-hero__scrim {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to bottom,
+    rgba(17, 17, 17, .12) 0%,
+    rgba(17, 17, 17, .36) 46%,
+    rgba(17, 17, 17, .86) 100%);
+}
+.sd-hero__inner {
+  position: relative; z-index: 2;
+  width: 100%; max-width: var(--measure); margin-inline: auto;
+  padding: 0 var(--margin) clamp(48px, 9vh, 104px);
+  color: var(--paper);
+}
+.sd-hero__eyebrow { color: var(--paper); opacity: .82; }
+.sd-hero__title {
+  margin-top: .34em;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--t-display);
+  line-height: .96;
+  letter-spacing: -.012em;
+}
+.sd-hero__sub {
+  margin-top: 1.1em;
+  max-width: 54ch;
+  color: var(--paper); opacity: .78;
+}
+.sd-hero__cue {
+  display: block; margin-top: clamp(28px, 4vh, 44px);
+  width: 1px; height: clamp(34px, 5vh, 54px);
+  background: linear-gradient(to bottom, var(--paper), transparent);
+}
+
+/* ====================================================== ink fields ==
+   Two of them, and they bookend the argument: the epigraph that opens
+   it and the ask that closes it. Ink is a palette value, so a field of
+   it is still inside the seven. The accent is not used for a field,
+   because a field is not one element. */
+
+.sd-field {
+  background: var(--ink);
+  color: var(--paper);
+  padding-block: clamp(80px, 14vh, 150px);
+}
+.sd-field__inner {
+  width: 100%; max-width: var(--measure); margin-inline: auto;
+  padding-inline: var(--margin);
+}
+.sd-field .sd-label { color: var(--paper); }
+.sd-field .sd-micro { color: var(--rule); }
+/* On ink, the accent mark would disappear: #1c3f66 against #111 is not
+   a contrast, it is a rumour. Paper is the accent on an ink field, and
+   the number steps back to the hairline value. */
+.sd-field .sd-sec__num { color: var(--rule); }
+.sd-field .sd-sec__num::before { background: var(--paper); }
+
+.sd-quote__text {
+  font-family: var(--serif);
+  font-weight: var(--w-light-italic);
+  font-style: italic;
+  font-size: clamp(27px, 3.9vw, 54px);
+  line-height: 1.14;
+  letter-spacing: -.008em;
+  max-width: 34ch;
+}
+.sd-quote__cite { margin-top: 1.8em; }
+
+.sd-ask__title {
+  margin-top: .3em;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--t-head);
+  line-height: 1.04;
+}
+.sd-ask__line {
+  margin-top: 1em;
+  max-width: 44ch;
+  font-size: var(--t-deck);
+  line-height: 1.3;
+}
+/* The last line is the one the page exists to deliver. Emphasis weight
+   under it, which is the one rule in the system reserved for the single
+   thing a drawing is about. */
+.sd-ask__line:last-of-type {
+  padding-bottom: .5em;
+  border-bottom: var(--w-emphasis) solid var(--paper);
+  display: inline-block;
+}
+
+/* ========================================================== sections */
+
+.sd-deck > .sd-sec { padding-block: clamp(76px, 12vh, 148px); }
+.sd-sec--band      { padding-block: clamp(76px, 12vh, 148px); }
+
+/* ------- the head zone: number, headline, deck, hairline
+   The guide's head is a headline, a deck that states the argument in
+   one sentence, and a hairline across the full measure. That is the
+   shape of every section opening on this page. */
+.sd-sec__head {
+  border-bottom: var(--w-hairline) solid var(--rule);
+  padding-bottom: clamp(22px, 3vw, 36px);
+}
+
+/* The section number is the page's one accent element per section. One
+   mark, two by twenty four, and nothing else in the section is allowed
+   to be blue. */
+.sd-sec__num {
+  display: flex; align-items: center; gap: .85em;
+  color: var(--gray);
+  letter-spacing: var(--track-num);
+}
+.sd-sec__num::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 24px; height: var(--w-primary);
+  background: var(--accent);
+}
+/* Amber is guest movement, and only guest movement. The one section
+   whose subject is the guest's own path through the building takes it,
+   and the blue accent stays out of that section entirely. */
+.sd-sec[data-accent="amber"] .sd-sec__num::before { background: var(--amber); }
+
+.sd-sec__title {
+  margin-top: .5em;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--t-head);
+  line-height: 1.04;
+  letter-spacing: -.01em;
+  max-width: 24ch;
+}
+.sd-lede {
+  margin-top: .7em;
+  max-width: 52ch;
+  font-family: var(--serif);
+  font-size: var(--t-deck);
+  line-height: 1.32;
+}
+
+/* ------- the panel zone
+   The artboard's two panels are 324.56 wide inside a 681.12 measure
+   with a 32pt gutter, which is symmetric. So this is symmetric, and a
+   figure wider than a panel takes the full measure instead, which is
+   the single full measure panel the guide sanctions for a figure that
+   is one diagram rather than a comparison.
+
+   minmax(0, 1fr) rather than 1fr: a grid item defaults to min-width
+   auto, so a column holding a max-width measure would otherwise widen
+   the track and push the page sideways. */
+.sd-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 56px);
+  margin-top: clamp(32px, 5vw, 56px);
+}
+.sd-split__copy, .sd-split__fig { min-width: 0; }
+@media (min-width: 980px) {
+  .sd-split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--gutter-panel);
+  }
+}
+.sd-runon { margin-top: clamp(32px, 5vw, 56px); }
+
+/* ------- the band zone
+   A heading and four numbered rows, which the guide calls the single
+   most useful device in the system. Row number in gray at the tighter
+   tracking, row label in ink, row description in italic serif at
+   text-2. Those three are the whole band. */
+.sd-unlocks {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(26px, 3vw, 34px);
+  margin-top: clamp(38px, 5vw, 58px);
+  padding-top: clamp(26px, 3vw, 34px);
+  border-top: var(--w-hairline) solid var(--rule);
+}
+@media (min-width: 760px)  { .sd-unlocks { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .sd-unlocks { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+.sd-unlocks__n {
+  display: block;
+  font-family: var(--sans);
+  font-weight: var(--w-medium);
+  font-size: var(--t-label);
+  letter-spacing: var(--track-num);
+  color: var(--gray);
+}
+.sd-unlocks__k {
+  display: block;
+  margin-top: .55em;
+  font-family: var(--sans);
+  font-weight: var(--w-medium);
+  font-size: var(--t-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.sd-unlocks p {
+  margin-top: .48em;
+  font-family: var(--serif);
+  font-weight: var(--w-light-italic);
+  font-style: italic;
+  font-size: var(--t-desc);
+  line-height: 1.42;
+  color: var(--text-2);
+}
+
+/* ------- panel notes
+   Short lines under a drawing that annotate it rather than argue it.
+   That is the guide's panel note: light italic serif at text-2. The
+   voice is the signal, so a reader knows without reading that these
+   belong to the figure above them and not to the argument. */
+.sd-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(22px, 3vw, 32px);
+  margin-top: clamp(28px, 4vw, 40px);
+}
+@media (min-width: 860px) {
+  .sd-cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.sd-cols p {
+  font-family: var(--serif);
+  font-weight: var(--w-light-italic);
+  font-style: italic;
+  font-size: var(--t-desc);
+  line-height: 1.42;
+  color: var(--text-2);
+}
+
+/* A cross reference sitting inside running copy, in the source line
+   voice the deck credits a number with. */
+.sd-cite {
+  font-weight: var(--w-thin-italic);
+  font-style: italic;
+  font-size: var(--t-source);
+  color: var(--gray);
+  white-space: nowrap;
+}
+
+/* ========================================================== figures */
+
+.sd-fig { margin-top: clamp(28px, 4vw, 44px); }
+.sd-fig--wide { margin-top: clamp(38px, 5vw, 60px); }
+
+/* A figure sits on paper with a hairline over it, which is the guide's
+   own foot rule turned up to be a head rule. The frame is the scroll
+   container on narrow screens, so the overflow is contained here and
+   never reaches the page. */
+.sd-fig__media {
+  background: var(--paper);
+  border-top: var(--w-hairline) solid var(--rule);
+  padding-top: clamp(14px, 2vw, 24px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  cursor: zoom-in;
+}
+.sd-fig__media img { height: auto; }
+
+/* Two behaviours, split at the point the panels stop being panels.
+
+   Wide, the drawing takes its own drawn width or the column, whichever
+   is smaller, and never pans. These are vectors drawn at a known size,
+   so a 292pt figure sits at 292pt rather than being blown up to fill,
+   and a 549pt one shrinks to the panel and stays legible at 87 per
+   cent. Panning is the wrong affordance on a desktop, and earning it
+   for a twenty five pixel shortfall is worse than not having it.
+
+   Narrow, the drawing holds a width its own labels survive and the
+   reader pans inside the frame instead. The floor is a figure width
+   rather than a share of the screen on purpose: capped at the viewport
+   an 826px diagram lands at 42 per cent of drawn size, under the point
+   where 7pt labels hold up, and two pixels short of overflowing, so it
+   is illegible and gets no pan affordance either. */
+.sd-fig__media img { min-width: min(var(--fig-w, 0px), 560px); }
+@media (min-width: 980px) {
+  .sd-fig__media img { min-width: 0; }
+}
+
+/* The affordance is a micro label, and the measurement turns it on, so
+   it never claims a figure pans when the column already shows it all. */
+.sd-fig__hint { display: none; margin-top: .9em; }
+.sd-fig__media.is-pannable + .sd-fig__hint { display: block; }
+
+/* A figure beside its copy holds still while the argument scrolls past
+   it. Only where there are two panels to hold still inside. */
+@media (min-width: 980px) {
+  .sd-fig--sticky { position: sticky; top: clamp(24px, 5vh, 56px); }
+}
+
+/* ----------------------------------------------------- photo mosaic */
+.sd-mosaic {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 20px);
+  margin-top: clamp(32px, 5vw, 56px);
+}
+@media (min-width: 900px) {
+  .sd-mosaic { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+/* One shape for all four, because four photographs at four native
+   ratios in a four column band is not a mosaic, it is a shelf of
+   accidents. Cover crops them to the cell; without it three of the
+   four sat short of their stretched grid row and showed the rule
+   colour underneath as a grey void. */
+.sd-plate {
+  overflow: hidden;
+  background: var(--rule);
+  aspect-ratio: 3 / 4;
+}
+.sd-plate img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  /* The parallax offset arrives as --par rather than as a whole
+     transform, so the overscale stays here where it belongs. The
+     scale is what keeps a drifting image from pulling its own edge
+     into the frame: the offset tops out near eight pixels, and eight
+     per cent of the short side covers it. */
+  transform: translate3d(0, var(--par, 0px), 0) scale(1.08);
+  will-change: transform;
+}
+
+/* ============================================================== zoom */
+
+.sd-zoom {
+  position: fixed; inset: 0; z-index: 80;
+  display: flex; align-items: center; justify-content: center;
+  padding: clamp(44px, 7vh, 76px) var(--margin);
+  background: var(--paper);
+  opacity: 0;
+  transition: opacity var(--mid) var(--ease);
+}
+.sd-zoom.is-on { opacity: 1; }
+.sd-zoom[hidden] { display: none; }
+.sd-zoom__stage { width: 100%; max-height: 100%; overflow: auto; }
+.sd-zoom__img { width: 100%; height: auto; margin: auto; }
+.sd-zoom__close {
+  position: absolute; top: 16px; right: var(--margin);
+  padding: 9px 15px;
+  background: var(--paper);
+  color: var(--ink);
+  border: var(--w-secondary) solid var(--ink);
+  font-family: var(--sans);
+  font-weight: var(--w-medium);
+  font-size: var(--t-micro);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.sd-zoom__close:hover { background: var(--ink); color: var(--paper); }
+
+/* ============================================================ outro */
+
+.sd-outro {
+  padding-block: clamp(64px, 10vh, 120px);
+  border-top: var(--w-hairline) solid var(--rule);
+}
+.sd-links { display: flex; flex-wrap: wrap; gap: 10px 26px; }
+.sd-links a {
+  font-family: var(--sans);
+  font-weight: var(--w-medium);
+  font-size: var(--t-label);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  padding-bottom: 3px;
+  border-bottom: var(--w-secondary) solid var(--ink);
+}
+.sd-links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+/* A source line, which is what both of these are: they credit the
+   page rather than label anything on it. The guide gives that job to
+   thin italic serif in gray, not to tracked caps, and a full sentence
+   set in tracked caps at this size is a chore to read. */
+.sd-outro__note { margin-top: 2.2em; max-width: 60ch; font-size: var(--t-source); }
+.sd-foot__legal { font-size: var(--t-source); }
+
+/* =========================================================== footer */
+
+.sd-foot {
+  border-top: var(--w-hairline) solid var(--rule);
+  padding-block: clamp(40px, 6vh, 64px);
+}
+.sd-foot__inner {
+  width: 100%; max-width: var(--measure); margin-inline: auto;
+  padding-inline: var(--margin);
+  display: flex; flex-direction: column; gap: 22px;
+}
+.sd-foot__legal { margin-top: 6px; }
+
+/* ====================================================== reveal ======
+   Scoped to .sd-js, which the inline head script adds. Nothing is
+   hidden unless something is there to show it again: a blocked, 404ing
+   or throwing script costs the reader the animation, not every block of
+   copy on the page. */
+.sd-js .sd-step, .sd-js .sd-sec__num, .sd-js .sd-sec__title,
+.sd-js .sd-lede, .sd-js .sd-fig,
+.sd-js .sd-quote__inner, .sd-js .sd-ask__title {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--slow) var(--ease), transform var(--slow) var(--ease);
+}
+.is-in { opacity: 1 !important; transform: none !important; }
+.sd-sec__title { transition-delay: 60ms; }
+.sd-lede { transition-delay: 110ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .sd-step, .sd-sec__num, .sd-sec__title, .sd-lede, .sd-fig,
+  .sd-quote__inner, .sd-ask__title {
+    opacity: 1; transform: none; transition: none;
+  }
+  .sd-hero__media { transform: none !important; }
+  .sd-plate img   { transform: none !important; }
+  .sd-plate       { aspect-ratio: 3 / 4; }
+  .sd-zoom, .sd-marker { transition: none; }
+  .sd-hero__cue { display: none; }
+}
+
+/* ============================================================ print */
+
+@media print {
+  .sd-progress, .sd-marker, .sd-zoom, .sd-hero__cue, .sd-fig__hint { display: none !important; }
+  body { font-size: 11pt; }
+  .sd-field { background: var(--paper); color: var(--ink); }
+  .sd-field .sd-label { color: var(--ink); }
+  .sd-ask__line:last-of-type { border-bottom-color: var(--ink); }
+  .sd-hero { min-height: 0; }
+  .sd-hero__scrim { background: none; }
+  .sd-hero__inner { color: var(--ink); }
+  .sd-hero__eyebrow, .sd-hero__sub { color: var(--ink); opacity: 1; }
+  .sd-sec { break-inside: avoid; }
+  .sd-fig__media { overflow: visible; }
+  .sd-fig__media img { min-width: 0; }
+}
+
+/* ==================================================================
+   PAGE NOTES, 19 NOVEMBER 2026
+
+   Three figure treatments, named in the notes as Global Image Note 1,
+   2 and 3, plus figure numbers and the footnote under the Kansas City
+   plates. Nothing here introduces a colour or a line weight; the two
+   new type sizes are both derived, one from the artwork's own label
+   size and one from the existing source size.
+
+     Note 1   bigger gap, bigger drawing, a fade that can be seen
+     Note 2   bigger gap, a fade that can be seen, drawing unchanged
+     Note 3   bigger gap, and the drawing arrives left to right once
+              the whole of it is on the page
+   ================================================================== */
+
+/* ---- gaps --------------------------------------------------------
+   All three notes open with "increase gaps". The break is section
+   03's, which asks for a large page break between the Why Now copy
+   and the four vectors. */
+.sd-fig--gap   { margin-top: clamp(52px, 7.5vw, 96px); }
+.sd-fig--break { margin-top: clamp(78px, 11vw, 150px); }
+
+/* ---- size --------------------------------------------------------
+   The page used to refuse to enlarge a drawing past the width it was
+   drawn at, on the grounds that a 292pt figure should sit at 292pt.
+   The notes ask for bigger figures, so the refusal becomes a ceiling
+   instead: up to 1.45 of drawn size, never past the column. At 1.45 a
+   7.5pt label in the artwork reads near 11pt, which is generous
+   without turning a diagram into a poster.
+
+   Section 03 names its own target, the width of the unlocks list
+   below it, so it takes the column whole. */
+.sd-fig--grow .sd-fig__media img {
+  width: min(100%, calc(var(--fig-w, 100%) * 1.45));
+}
+.sd-fig--grow-full .sd-fig__media img { width: 100%; }
+
+/* ---- the fade ----------------------------------------------------
+   The fade was always here and could never be seen: the reveal line
+   sat at 0.92 of the viewport, so a figure was already opaque by the
+   time it cleared the fold. The script gives these a later line; this
+   gives them a longer run and a little further to travel. */
+.sd-js .sd-fig--fade {
+  transform: translateY(26px);
+  transition-duration: 1150ms;
+}
+
+/* ---- the left to right arrival -----------------------------------
+   A soft-edged mask three times the width of the frame, parked with
+   its clear tail over the drawing and slid until its solid head
+   covers it. Transitioning mask-position interpolates where a custom
+   property would need registering, and the gradient edge is what
+   makes it a fade rather than a shutter.
+
+   Scoped to .sd-js for the same reason the reveal is: with no
+   scripting the class never lands, and an unmasked figure is the
+   right failure. */
+.sd-js .sd-fig--wipe .sd-fig__media {
+  --sd-wipe: linear-gradient(90deg,
+    #000 0 31%, rgba(0, 0, 0, .42) 56%, rgba(0, 0, 0, 0) 82%);
+  -webkit-mask-image: var(--sd-wipe);
+          mask-image: var(--sd-wipe);
+  -webkit-mask-size: 320% 100%;
+          mask-size: 320% 100%;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: 100% 0;
+          mask-position: 100% 0;
+  transition: -webkit-mask-position 1250ms var(--ease),
+                      mask-position 1250ms var(--ease);
+}
+.sd-js .sd-fig--wipe.is-wiped .sd-fig__media {
+  -webkit-mask-position: 0 0;
+          mask-position: 0 0;
+}
+/* Section 02, where the note asks for the lines of the growth chart
+   to animate. Every mark in that drawing is a filled path, so there
+   is no stroke to draw; a slow wipe across a line chart reads as the
+   lines extending, because the lines are the only thing in it that
+   runs horizontally. */
+.sd-js .sd-fig--wipe-slow .sd-fig__media { transition-duration: 1900ms; }
+
+/* ---- figure numbers ----------------------------------------------
+   The global note asks for the number to match the scale of each
+   image's own text. The drawings carry 7.5pt labels, so the number is
+   7.5pt multiplied by the scale the drawing is being displayed at,
+   which the script measures and reports as --fig-scale. Floored and
+   capped so it stays in the same family as --t-micro rather than
+   becoming a ninth size in its own right. */
+.sd-fig__num {
+  display: block;
+  margin-top: .9em;
+  font-family: var(--sans);
+  font-weight: var(--w-light);
+  font-size: clamp(10px, calc(7.5pt * var(--fig-scale, 1)), 15px);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--gray);
+  line-height: 1.2;
+}
+
+/* ---- the Kansas City plates --------------------------------------
+   A paper chip in the corner of each photograph, so Image 1 in the
+   footnote below can be found without counting. The plate is already
+   the clipping frame, so it only needs a position. */
+.sd-plate { position: relative; }
+.sd-plate__num {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: .36em .62em .32em;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: var(--w-medium);
+  font-size: var(--t-micro);
+  letter-spacing: var(--track-num);
+  line-height: 1;
+}
+
+/* The footnote itself. Sans label in gray over italic serif at the
+   source size, which is the band row device the guide already uses,
+   set small because the note asks for a small footnote. Columns track
+   the mosaic so each note sits under its own photograph. */
+.sd-notes {
+  margin-top: clamp(20px, 2.6vw, 30px);
+  padding: clamp(16px, 2vw, 22px) 0 0;
+  border-top: var(--w-hairline) solid var(--rule);
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 22px);
+}
+@media (min-width: 640px) { .sd-notes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 900px) { .sd-notes { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+.sd-notes__n {
+  display: block;
+  margin-bottom: .5em;
+  font-family: var(--sans);
+  font-weight: var(--w-light);
+  font-size: var(--t-micro);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--gray);
+}
+.sd-notes p {
+  font-family: var(--serif);
+  font-weight: var(--w-thin-italic);
+  font-style: italic;
+  font-size: var(--t-source);
+  line-height: 1.55;
+  color: var(--text-2);
+}
+.sd-notes em { font-style: normal; }
+
+/* ---- motion off, and paper --------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .sd-fig--wipe .sd-fig__media {
+    -webkit-mask-image: none !important;
+            mask-image: none !important;
+  }
+  .sd-js .sd-fig--fade { transform: none; transition: none; }
+}
+
+@media print {
+  .sd-fig--wipe .sd-fig__media {
+    -webkit-mask-image: none !important;
+            mask-image: none !important;
+  }
+  .sd-fig--gap, .sd-fig--break { margin-top: clamp(22px, 3vw, 30px); }
+  .sd-plate__num { border: var(--w-hairline) solid var(--rule); }
+}
+
+/* ==================================================================
+   v8
+
+   Section 01 asks for its two columns to sit on the same vertical
+   centre. The grid stretches by default, so the shorter of the two,
+   which is the drawing, was hanging from the top of a taller column
+   of copy. Only where there are two columns to centre against each
+   other; below 980px the split is one column and this would mean
+   nothing.
+
+   The figure in that section was sticky. Centring leaves it no room
+   to travel, so the class came off the markup rather than sitting
+   there doing nothing. Section 01 is now the only two-panel section
+   on the page.
+   ================================================================== */
+@media (min-width: 980px) {
+  .sd-split--center { align-items: center; }
+  /* .sd-fig carries its own top margin, which inside a grid item
+     pushes the drawing down the item and leaves the two centres apart
+     by half that margin even after the items themselves are centred.
+     The gap above the figure is the grid gap's job here, not the
+     figure's. */
+  .sd-split--center .sd-split__fig .sd-fig { margin-top: 0; }
+}
